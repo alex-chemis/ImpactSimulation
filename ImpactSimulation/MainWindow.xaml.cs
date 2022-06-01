@@ -1,13 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Media.Effects;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using winforms = System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Threading;
 using System.IO;
+using System.Drawing;
 
 namespace ImpactSimulation
 {
@@ -26,11 +38,17 @@ namespace ImpactSimulation
         private long Сollisions = 0;
         private string oldStr;
         private object threadLock = new object();
+        private (double X, double Y) RatioSpeedGraph;
+        private (double X, double Y) RatioPositionGraph;
+        private (double X, double Y) RatioEnergeGraph;
 
         private Block Block1;
         private Block Block2;
+        private List<(double X, double Y)> PointsSpeedGraph;
+        private List<(double X, double Y)> PointsPositionGraph;
+        private List<(double X, double Y)> PointsEnergeGraph;
 
-        private BackgroundWorker Worker;
+        private BackgroundWorker Worker = new BackgroundWorker();
         private Thread LogicalThread;
 
         public MainWindow()
@@ -47,10 +65,32 @@ namespace ImpactSimulation
             {
                 Console.WriteLine("Catch clause caught : {0} \n", e.Message);
             }
-            Worker = ((BackgroundWorker)this.FindResource("backgroundWorker"));
-            Block.Resiliency = Convert.ToDecimal(TextBox_Initial_Resiliency.Text);
+            Worker.WorkerReportsProgress = true;
+            Worker.WorkerSupportsCancellation = true;
+            Worker.DoWork += worker_DoWork;
+            Worker.ProgressChanged += worker_ProgressChanged;
+            Worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             Block1 = new Block(Convert.ToDecimal(TextBox_Initial_Mass1.Text), ((decimal)Canvas.GetLeft(Border_Block1), (int)Canvas.GetTop(Border_Block1)), (int)Border_Block1.Width, 0);
             Block2 = new Block(Convert.ToDecimal(TextBox_Initial_Mass2.Text), ((decimal)Canvas.GetLeft(Border_Block2), (int)Canvas.GetTop(Border_Block2)), (int)Border_Block2.Width, -1m / 10000);
+            PointsSpeedGraph = new List<(double X, double Y)>();
+            PointsPositionGraph = new List<(double X, double Y)>();
+            PointsEnergeGraph = new List<(double X, double Y)>();
+            InitializeOther();
+        }
+
+        #region Initialize
+        private void InitializeOther()
+        {
+            Block1.Mass = Convert.ToDecimal(TextBox_Initial_Mass1.Text);
+            Block1.Speed = Convert.ToDecimal(TextBox_Initial_Speed1.Text) / 10000;
+            Block2.Mass = Convert.ToDecimal(TextBox_Initial_Mass2.Text);
+            Block2.Speed = Convert.ToDecimal(TextBox_Initial_Speed2.Text) / 10000;
+            Block.Resiliency = Convert.ToDecimal(TextBox_Initial_Resiliency.Text);
+            Block1.Position.X = 1100;
+            Block2.Position.X = 1700;
+            Canvas.SetLeft(Border_Block1, (double)Block1.Position.X);
+            Canvas.SetLeft(Border_Block2, (double)Block2.Position.X);
+            Сollisions = 0;
             TextBox_Variable_Collisions.Text = Сollisions.ToString();
             TextBox_Variable_KinEnergy1.Text = (Block1.Mass * (Block1.Speed * 10000) * (Block1.Speed * 10000) / 2).ToString("G10");
             TextBox_Variable_KinEnergy2.Text = (Block2.Mass * (Block2.Speed * 10000) * (Block2.Speed * 10000) / 2).ToString("G10");
@@ -58,7 +98,17 @@ namespace ImpactSimulation
             TextBox_Variable_Position2.Text = Block2.Position.X.ToString("G10");
             TextBox_Variable_Speed1.Text = (Block1.Speed * 10000).ToString("G10");
             TextBox_Variable_Speed2.Text = (Block2.Speed * 10000).ToString("G10");
+            Graph.EllGraphTr(ref RatioSpeedGraph, ((double)Block1.Speed * 10000, (double)Block2.Speed * 10000), ((double)Block1.Mass, (double)Block2.Mass));
+            TB_Gr1_X2.Text = RatioSpeedGraph.X.ToString("G2");
+            TB_Gr1_Y2.Text = RatioSpeedGraph.Y.ToString("G2");
+            TB_Gr1_X2m.Text = (-RatioSpeedGraph.X).ToString("G2");
+            TB_Gr1_Y2m.Text = (-RatioSpeedGraph.Y).ToString("G2");
+            TB_Gr1_X1.Text = (RatioSpeedGraph.X / 2).ToString("G2");
+            TB_Gr1_Y1.Text = (RatioSpeedGraph.Y / 2).ToString("G2");
+            TB_Gr1_X1m.Text = (-RatioSpeedGraph.X / 2).ToString("G2");
+            TB_Gr1_Y1m.Text = (-RatioSpeedGraph.Y / 2).ToString("G2");
         }
+        #endregion
 
         static void MyHandler(object sender, UnhandledExceptionEventArgs args)
         {
@@ -269,15 +319,7 @@ namespace ImpactSimulation
                 Start = true;
                 if (!InProcess)
                 {
-                    Block1.Mass = Convert.ToDecimal(TextBox_Initial_Mass1.Text);
-                    Block1.Speed = Convert.ToDecimal(TextBox_Initial_Speed1.Text) / 10000;
-                    Block2.Mass = Convert.ToDecimal(TextBox_Initial_Mass2.Text);
-                    Block2.Speed = Convert.ToDecimal(TextBox_Initial_Speed2.Text) / 10000;
-                    Block.Resiliency = Convert.ToDecimal(TextBox_Initial_Resiliency.Text);
-                    Canvas.SetLeft(Border_Block1, (double)Block1.Position.X);
-                    Canvas.SetLeft(Border_Block2, (double)Block2.Position.X);
-                    Сollisions = 0;
-                    TextBox_Variable_Collisions.Text = Сollisions.ToString();
+                    InitializeOther();
                     InProcess = true;
                 }
                 btnImage_Start.Visibility = Visibility.Hidden;
@@ -294,24 +336,7 @@ namespace ImpactSimulation
             }
             lock (threadLock)
             {
-                Block1.Mass = Convert.ToDecimal(TextBox_Initial_Mass1.Text);
-                Block1.Speed = Convert.ToDecimal(TextBox_Initial_Speed1.Text) / 10000;
-                Block2.Mass = Convert.ToDecimal(TextBox_Initial_Mass2.Text);
-                Block2.Speed = Convert.ToDecimal(TextBox_Initial_Speed2.Text) / 10000;
-                Block.Resiliency = Convert.ToDecimal(TextBox_Initial_Resiliency.Text);
-                Block1.Position.X = 1100;
-                Block2.Position.X = 1700;
-                Canvas.SetLeft(Border_Block1, (double)Block1.Position.X);
-                Canvas.SetLeft(Border_Block2, (double)Block2.Position.X);
-                Сollisions = 0;
-                TextBox_Variable_Collisions.Text = Сollisions.ToString();
-                TextBox_Variable_Collisions.Text = Сollisions.ToString();
-                TextBox_Variable_KinEnergy1.Text = (Block1.Mass * (Block1.Speed * 10000) * (Block1.Speed * 10000) / 2).ToString("G10");
-                TextBox_Variable_KinEnergy2.Text = (Block2.Mass * (Block2.Speed * 10000) * (Block2.Speed * 10000) / 2).ToString("G10");
-                TextBox_Variable_Position1.Text = Block1.Position.X.ToString("G10");
-                TextBox_Variable_Position2.Text = Block2.Position.X.ToString("G10");
-                TextBox_Variable_Speed1.Text = (Block1.Speed * 10000).ToString("G10");
-                TextBox_Variable_Speed2.Text = (Block2.Speed * 10000).ToString("G10");
+                InitializeOther();
             }
         }
 
@@ -336,7 +361,6 @@ namespace ImpactSimulation
                         Сollisions++;
                     }
                 }
-                //Thread.Sleep(new TimeSpan(10));
             }
         }
 
@@ -427,5 +451,6 @@ namespace ImpactSimulation
 
         #endregion
 
+       
     }
 }
