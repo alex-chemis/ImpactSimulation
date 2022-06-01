@@ -16,7 +16,7 @@
             Medium,
             Large
         };
-
+        public Block() { }
         public Block(decimal mass, (decimal X, int Y) position, int size, decimal speed)
         {
             Mass = mass;

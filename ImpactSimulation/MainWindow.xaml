@@ -13,7 +13,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
                         <Canvas Height="18">
-                            <Polygon Fill="#FFBF0068" Points="2,15 15,15 8.5,3" Width="17" HorizontalAlignment="Stretch" Height="18"></Polygon>
+                            <Polygon Fill="#FF686868" Points="2,15 15,15 8.5,3" Width="17" HorizontalAlignment="Stretch" Height="18"></Polygon>
                         </Canvas>
                     </ControlTemplate>
                 </Setter.Value>
@@ -26,7 +26,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
                         <Canvas Height="18">
-                            <Polygon Fill="#FFBF0068" Points="2,3 8.5,15 15,3" Width="17" Height="18"></Polygon>
+                            <Polygon Fill="#FF686868" Points="2,3 8.5,15 15,3" Width="17" Height="18"></Polygon>
                         </Canvas>
                     </ControlTemplate>
                 </Setter.Value>
@@ -40,7 +40,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
                         <Border BorderBrush="Transparent" Background="#03000000">
-                            <Rectangle Fill="#FF68023A" Margin="2" Width="4"></Rectangle>
+                            <Rectangle Fill="#FF383838" Margin="2" Width="4"></Rectangle>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -54,10 +54,22 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Rectangle Fill="#FF950051" Margin="2"></Rectangle>
+                        <Rectangle Fill="#FF595959" Margin="2"></Rectangle>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                <Rectangle Fill="#FF6E6E6E" Margin="2"></Rectangle>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
@@ -148,7 +160,7 @@
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FFBF1A56"/>
+                    <Setter Property="Background" Value="#FF23EBFF"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -189,125 +201,24 @@
                     <DropShadowEffect ShadowDepth="0" Opacity="0.5"/>
                 </Rectangle.Effect>
             </Rectangle>
-            <Border Grid.Column="1" Grid.Row="2">
-                <Grid>
+            <Border Grid.Column="1" Grid.Row="2" Background="Black">
+                <Grid Background="#FFD8D8D8">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" MinHeight="10"/>
-                        <RowDefinition Height="29*"/>
-                        <RowDefinition Height="80*"/>
-                        <RowDefinition Height="218*"/>
+                        <RowDefinition/>
                         <RowDefinition Height="10.875"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="10"/>
-                        <ColumnDefinition Width="Auto" MinWidth="373.681"/>
-                        <ColumnDefinition Width="31*"/>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="192*"/>
-                        <ColumnDefinition Width="544*"/>
+                        <ColumnDefinition Width="373.681"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <LinearGradientBrush.RelativeTransform>
-                                <TransformGroup>
-                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                                    <RotateTransform Angle="142" CenterY="0.5" CenterX="0.5"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </LinearGradientBrush.RelativeTransform>
-                            <GradientStop Color="#FF342037" Offset="0"/>
-                            <GradientStop Color="#FF4E3139" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <Path Data="F1 M 541.504,33.077 L 0.000,502.186 L 0.000,720.000 L 83.446,720.000 L 876.378,33.077 L 541.504,33.077 Z" Margin="0,0,385.455,0" Stretch="Fill" Grid.RowSpan="5" Grid.ColumnSpan="6">
-                        <Path.Fill>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" Opacity="0.22">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                        <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-45"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <GradientStop Color="#FF29121C" Offset="0.527"/>
-                                <GradientStop Color="#00421630"/>
-                            </LinearGradientBrush>
-                        </Path.Fill>
-                    </Path>
-                    <Path Data="F1 M 1280.000,205.531 L 686.136,720.000 L 867.068,720.000 L 1280.000,362.274 L 1280.000,205.531 Z" Grid.Row="3" Stretch="Fill" Grid.Column="5" Grid.RowSpan="2">
-                        <Path.Fill>
-                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,-1" Opacity="0.095">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                        <SkewTransform CenterY="0.5" CenterX="0.5" AngleY="-74"/>
-                                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-19"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.Transform>
-                                    <MatrixTransform Matrix="1.000,0.000,1.155,-1.000,653.679,0.000" />
-                                </LinearGradientBrush.Transform>
-                                <GradientStop Color="#FF2E0F22" Offset="1"/>
-                                <GradientStop Offset="0.41" Color="#FF13080D"/>
-                            </LinearGradientBrush>
-                        </Path.Fill>
-                    </Path>
-                    <Path Data="F1 M 1228.020,33.077 L 1280.000,33.077 L 487.067,720.000 L 435.087,720.000 L 1228.020,33.077 Z" Margin="0.171,0,0,0" Stretch="Fill" Grid.Column="3" Grid.RowSpan="5" Grid.ColumnSpan="3">
-                        <Path.Fill>
-                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,-1" Opacity="0.1">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                        <SkewTransform CenterY="0.5" CenterX="0.5" AngleY="-74"/>
-                                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-19"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.Transform>
-                                    <MatrixTransform Matrix="1.000,0.000,1.155,-1.000,653.679,0.000" />
-                                </LinearGradientBrush.Transform>
-                                <GradientStop Color="#FF401C32" Offset="1"/>
-                                <GradientStop Offset="0.41" Color="#FF29121C"/>
-                            </LinearGradientBrush>
-                        </Path.Fill>
-                    </Path>
-                    <Path Data="F1 M 1280.000,64.697 L 523.568,720.000 L 641.639,720.000 L 1280.000,166.983 L 1280.000,64.697 Z" Grid.Row="2" Stretch="Fill" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                        <Path.Fill>
-                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,-1" Opacity="0.1">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                        <SkewTransform CenterY="0.5" CenterX="0.5" AngleY="-74"/>
-                                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-19"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.Transform>
-                                    <MatrixTransform Matrix="1.000,0.000,1.155,-1.000,653.679,0.000" />
-                                </LinearGradientBrush.Transform>
-                                <GradientStop Color="#FF401930" Offset="1"/>
-                                <GradientStop Offset="0.41" Color="#FF29121C"/>
-                            </LinearGradientBrush>
-                        </Path.Fill>
-                    </Path>
-                    <Path Opacity="0.8" Data="F1 M 378.367,709.727 L 10.686,709.727 L 10.686,45.076 L 378.367,45.076 L 378.367,709.727 Z" Margin="0,0,0,0.002" Stretch="Fill" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+                    <Path Opacity="0.8" Data="F1 M 378.367,709.727 L 10.686,709.727 L 10.686,45.076 L 378.367,45.076 L 378.367,709.727 Z" Stretch="Fill" Grid.Column="1" Grid.Row="1" Fill="#FFE9FAFF">
                         <Path.Effect>
                             <DropShadowEffect BlurRadius="52" Color="#FC000000" Opacity="0.4" RenderingBias="Quality"/>
                         </Path.Effect>
-                        <Path.Fill>
-                            <LinearGradientBrush StartPoint="-0.237,-0.323" EndPoint="1.292,-0.813">
-                                <LinearGradientBrush.Transform>
-                                    <MatrixTransform Matrix="1.000,0.000,-0.000,-1.000,0.000,0.000" />
-                                </LinearGradientBrush.Transform>
-                                <GradientStop Offset="0.00" Color="#FF8D0335"/>
-                                <GradientStop Offset="1.00" Color="#FF590231"/>
-                            </LinearGradientBrush>
-                        </Path.Fill>
                     </Path>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="4" Grid.RowSpan="5" Grid.Column="2">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.RowSpan="3" Grid.Column="2">
                         <Grid Width="{Binding ActualWidth, ElementName=scrollViewer}">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -334,17 +245,13 @@
                                         <ColumnDefinition Width="294.013"/>
                                         <ColumnDefinition Width="1470.063"/>
                                     </Grid.ColumnDefinitions>
-                                    <Canvas x:Name="Wnd1" Grid.ColumnSpan="3" Grid.Row="1">
-                                        <Rectangle Fill="#44000000" Height="1470" Width="3234.14">
-                                            <Rectangle.Effect>
-                                                <DropShadowEffect BlurRadius="100"/>
-                                            </Rectangle.Effect>
-                                        </Rectangle>
-                                        <Line x:Name="line" X1="400" Y1="325" Height="1470" Width="3234.14" Stroke="#FFC7C7C7" StrokeThickness="8" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" X2="{Binding X1, ElementName=line}" Y2="1125" StrokeStartLineCap="Round"/>
-                                        <Line x:Name="line1" Y1="1125" Height="1470" Width="3234.14" Stroke="#FFC7C7C7" StrokeThickness="8" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="{Binding Y1, ElementName=line1}" X2="2830" X1="400" StrokeStartLineCap="Round"/>
+                                    <Canvas Grid.ColumnSpan="3" Grid.Row="1" ClipToBounds="True">
+                                        <Rectangle Fill="#FFF1F1F1" Height="1470" Width="3234.14"/>
+                                        <Line x:Name="line" X1="400" Y1="325" Height="1470" Width="3234.14" Stroke="#FF272727" StrokeThickness="15" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" X2="{Binding X1, ElementName=line}" Y2="1125" StrokeStartLineCap="Round"/>
+                                        <Line x:Name="line1" Y1="1125" Height="1470" Width="3234.14" Stroke="#FF272727" StrokeThickness="15" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="{Binding Y1, ElementName=line1}" X2="2830" X1="400" StrokeStartLineCap="Round"/>
                                         <Border x:Name="Border_Block1" Height="225" Canvas.Left="1100" Canvas.Top="896" Width="225">
                                             <Grid>
-                                                <Rectangle Margin="0.8,0,0,0" Opacity="0.895">
+                                                <Rectangle Margin="0.8,0,0,0" Opacity="0.895" Stroke="#FF00D1FF">
                                                     <Rectangle.Effect>
                                                         <DropShadowEffect BlurRadius="40" Opacity="0.2"/>
                                                     </Rectangle.Effect>
@@ -358,13 +265,13 @@
                                                                     <TranslateTransform/>
                                                                 </TransformGroup>
                                                             </LinearGradientBrush.RelativeTransform>
-                                                            <GradientStop Color="#FF63001B" Offset="0"/>
-                                                            <GradientStop Color="#FF80001D" Offset="1"/>
+                                                            <GradientStop Color="#FF00D4CB" Offset="0"/>
+                                                            <GradientStop Color="#FF00E2EE" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Rectangle.Fill>
                                                 </Rectangle>
                                                 <TextBlock TextWrapping="Wrap" Text="{Binding Text, ElementName=TextBox_Initial_Mass1}" Margin="0,58.85,0,62.623" VerticalAlignment="Center" Height="111.258" TextAlignment="Center" FontSize="90" FontFamily="Century Gothic" FontWeight="SemiBold" Foreground="#FF26171E"/>
-                                                <TextBlock Height="90" Margin="0.8,-90,0,0" TextWrapping="Wrap" Text="Тело 1" VerticalAlignment="Top" TextAlignment="Center" FontSize="60" Foreground="#FFC7C7C7" FontFamily="Century Gothic"/>
+                                                <TextBlock Height="90" Margin="0.8,-90,0,0" TextWrapping="Wrap" Text="Тело 1" VerticalAlignment="Top" TextAlignment="Center" FontSize="60" Foreground="#FF2E2E2E" FontFamily="Century Gothic"/>
                                             </Grid>
                                         </Border>
                                         <Border x:Name="Border_Block2" Height="225" Canvas.Left="1700" Canvas.Top="896" Width="225">
@@ -383,67 +290,118 @@
                                                                     <TranslateTransform/>
                                                                 </TransformGroup>
                                                             </LinearGradientBrush.RelativeTransform>
-                                                            <GradientStop Color="#FF5D002E" Offset="0"/>
-                                                            <GradientStop Color="#FF85003D" Offset="1"/>
+                                                            <GradientStop Color="#FF0061D4" Offset="0"/>
+                                                            <GradientStop Color="#FF007BE2" Offset="1"/>
                                                         </LinearGradientBrush>
                                                     </Rectangle.Fill>
                                                 </Rectangle>
                                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Height="116.063" FontSize="90" TextAlignment="Center" Text="{Binding Text, ElementName=TextBox_Initial_Mass2}" Foreground="#FF26171E" FontFamily="Century Gothic" FontWeight="SemiBold"/>
-                                                <TextBlock TextWrapping="Wrap" FontSize="60" TextAlignment="Center" Text="Тело 2" Foreground="#FFC7C7C7" FontFamily="Century Gothic" Margin="0,-90,0,0" Height="90" VerticalAlignment="Top"/>
+                                                <TextBlock TextWrapping="Wrap" FontSize="60" TextAlignment="Center" Text="Тело 2" Foreground="#FF2E2E2E" FontFamily="Century Gothic" Margin="0,-90,0,0" Height="90" VerticalAlignment="Top"/>
                                             </Grid>
                                         </Border>
+                                        <TextBlock x:Name="TB_Gr1_Y2_Copy" Height="120" Canvas.Left="300" TextWrapping="Wrap" Width="200" FontSize="60" Text="0" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1150" FontWeight="Bold" TextAlignment="Center"/>
+                                        <TextBlock x:Name="TB_Gr1_Y2_Copy1" Height="120" Canvas.Left="700" TextWrapping="Wrap" Width="200" FontSize="60" Text="400" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1150" FontWeight="Bold" TextAlignment="Center"/>
+                                        <TextBlock x:Name="TB_Gr1_Y2_Copy2" Height="120" Canvas.Left="1100" TextWrapping="Wrap" Width="200" FontSize="60" Text="800" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1150" FontWeight="Bold" TextAlignment="Center"/>
+                                        <TextBlock x:Name="TB_Gr1_Y2_Copy3" Height="120" Canvas.Left="1500" TextWrapping="Wrap" Width="200" FontSize="60" Text="1200" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1150" FontWeight="Bold" TextAlignment="Center"/>
+                                        <TextBlock x:Name="TB_Gr1_Y2_Copy4" Height="120" Canvas.Left="1900" TextWrapping="Wrap" Width="200" FontSize="60" Text="1600" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1150" FontWeight="Bold" TextAlignment="Center"/>
+                                        <TextBlock x:Name="TB_Gr1_Y2_Copy5" Height="120" Canvas.Left="2300" TextWrapping="Wrap" Width="200" FontSize="60" Text="2000" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1150" FontWeight="Bold" TextAlignment="Center"/>
+                                        <TextBlock x:Name="TB_Gr1_Y2_Copy6" Height="120" Canvas.Left="2700" TextWrapping="Wrap" Width="200" FontSize="60" Text="2400" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1150" FontWeight="Bold" TextAlignment="Center"/>
                                     </Canvas>
-                                    <Canvas Grid.Row="3">
-                                        <Rectangle x:Name="Wnd2" Fill="#44000000" Width="1470.064" Height="1470">
-                                            <Rectangle.Effect>
-                                                <DropShadowEffect BlurRadius="100"/>
-                                            </Rectangle.Effect>
-                                        </Rectangle>
-                                        <Line x:Name="line_Copy" X1="732" Y1="100" Height="1470" Width="1470.064" Stroke="#FFC7C7C7" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="1370" StrokeStartLineCap="Round" X2="732"/>
-                                        <Line x:Name="line_Copy1" X1="100" Y1="732" Height="1470" Width="1470.064" Stroke="#FFC7C7C7" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="732" StrokeStartLineCap="Round" X2="1370"/>
-                                        <Ellipse Height="1000" Canvas.Left="235" Canvas.Top="235" Width="1000" Stroke="#B2BF0068" StrokeThickness="4"/>
-                                        <TextBlock Height="120" Canvas.Left="614.802" TextWrapping="Wrap" Width="120" FontSize="90" Text="v₁" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="67.269" TextAlignment="Center"/>
-                                        <TextBlock Height="120" Canvas.Left="1301.91" TextWrapping="Wrap" Width="120" FontSize="90" Text="v₂" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="718.341" TextAlignment="Center"/>
-                                        <TextBlock Height="120" Canvas.Left="591.578" TextWrapping="Wrap" Width="120" FontSize="60" Text="0" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Right"/>
-                                        <TextBlock x:Name="TB_Gr1_Y2" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Text="2" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="235" TextAlignment="Right"/>
-                                        <TextBlock x:Name="TB_Gr1_X2"  Height="120" Canvas.Left="1088.519" TextWrapping="Wrap" Width="240" FontSize="60" Text="2" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center"/>
-                                        <TextBlock x:Name="TB_Gr1_Y1" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Text="1" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="469.736" TextAlignment="Right"/>
-                                        <TextBlock x:Name="TB_Gr1_Y1m" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="937.242" TextAlignment="Right"><Run Text="-"/><Run Text="1"/></TextBlock>
-                                        <TextBlock x:Name="TB_Gr1_Y2m" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="1172.036" TextAlignment="Right"><Run Text="-"/><Run Text="2"/></TextBlock>
-                                        <TextBlock x:Name="TB_Gr1_X1" Height="120" Canvas.Left="848.519" TextWrapping="Wrap" Width="240" FontSize="60" Text="1" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center"/>
-                                        <TextBlock x:Name="TB_Gr1_X1m" Height="120" Canvas.Left="368.395" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center"><Run Text="-"/><Run Text="1"/></TextBlock>
-                                        <TextBlock x:Name="TB_Gr1_X2m" Height="120" Canvas.Left="128.395" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF6A6A6A" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center"><Run Text="-"/><Run Text="2"/></TextBlock>
-                                        <Canvas Height="1470" Width="1470.064">
-                                            <Line x:Name="Line_BtwGr" Height="1470" Width="1470.064" Stroke="#FFC7C7C7" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" StrokeStartLineCap="Round" Visibility="Hidden"/>
-                                            <Ellipse x:Name="Ellipse_Gr1" Height="30" Canvas.Left="221.996" StrokeThickness="4" Canvas.Top="717.689" Width="30" Fill="#FFB00029" Visibility="Hidden"/>
-                                            <Ellipse x:Name="Ellipse_Gr2" Height="30" Canvas.Left="222" StrokeThickness="4" Canvas.Top="717" Width="30" Fill="#FFB00029" Visibility="Hidden"/>
-                                            <Image Height="1470" Width="1470.064" d:IsHidden="True">
-
-                                            </Image>
+                                    <Canvas Grid.Row="3" ClipToBounds="True">
+                                        <Rectangle Fill="#FFF1F1F1" Width="1470.064" Height="1470"/>
+                                        <Line X1="735" Y1="100" Height="1470" Width="1470.064" Stroke="#FF272727" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="1370" StrokeStartLineCap="Round" X2="735"/>
+                                        <Line X1="100" Y1="735" Height="1470" Width="1470.064" Stroke="#FF272727" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="735" StrokeStartLineCap="Round" X2="1370"/>
+                                        <Ellipse Height="1008" Canvas.Left="231" Canvas.Top="231" Width="1008" Stroke="#FF1A99E1" StrokeThickness="8"/>
+                                        <TextBlock Height="120" Canvas.Left="614.802" TextWrapping="Wrap" Width="120" FontSize="90" Text="v₁" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="67.269" TextAlignment="Center" FontWeight="Bold"/>
+                                        <TextBlock Height="120" Canvas.Left="1301.91" TextWrapping="Wrap" Width="120" FontSize="90" Text="v₂" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="610.157" TextAlignment="Center" FontWeight="Bold"/>
+                                        <TextBlock Height="120" Canvas.Left="591.578" TextWrapping="Wrap" Width="120" FontSize="60" Text="0" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Right" FontWeight="Bold"/>
+                                        <TextBlock x:Name="TB_Gr1_Y2" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Text="2" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="235" TextAlignment="Right" FontWeight="Bold"/>
+                                        <TextBlock x:Name="TB_Gr1_X2"  Height="120" Canvas.Left="1088.519" TextWrapping="Wrap" Width="240" FontSize="60" Text="2" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center" FontWeight="Bold"/>
+                                        <TextBlock x:Name="TB_Gr1_Y1" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Text="1" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="469.736" TextAlignment="Right" FontWeight="Bold"/>
+                                        <TextBlock x:Name="TB_Gr1_X1" Height="120" Canvas.Left="848.519" TextWrapping="Wrap" Width="240" FontSize="60" Text="1" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center" FontWeight="Bold"/>
+                                        <TextBlock x:Name="TB_Gr1_Y1m" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="937.242" TextAlignment="Right" FontWeight="Bold"><Run Text="-"/><Run Text="1"/></TextBlock>
+                                        <TextBlock x:Name="TB_Gr1_Y2m" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1172.036" TextAlignment="Right" FontWeight="Bold"><Run Text="-"/><Run Text="2"/></TextBlock>
+                                        <TextBlock x:Name="TB_Gr1_X1m" Height="120" Canvas.Left="368.395" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center" FontWeight="Bold"><Run Text="-"/><Run Text="1"/></TextBlock>
+                                        <TextBlock x:Name="TB_Gr1_X2m" Height="120" Canvas.Left="128.395" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center" FontWeight="Bold"><Run Text="-"/><Run Text="2"/></TextBlock>
+                                        <Canvas x:Name="Canvas_Gr1" Height="1470" Width="1470.064">
+                                            <Line x:Name="Line_Gr1_BtwEl" Height="1470" Width="1470.064" Stroke="#FFDC0078" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" StrokeStartLineCap="Round"/>
+                                            <Ellipse x:Name="Ellipse_Gr1" Height="30" Canvas.Left="220" StrokeThickness="4" Canvas.Top="720" Width="30" Fill="#FFDC0078" Stroke="#FFA40043"/>
                                         </Canvas>
                                     </Canvas>
-                                    <Rectangle x:Name="Wnd3" Grid.Column="2" Fill="#44000000" Grid.Row="3" Width="1470.063">
-                                        <Rectangle.Effect>
-                                            <DropShadowEffect BlurRadius="100"/>
-                                        </Rectangle.Effect>
-                                    </Rectangle>
-                                    <Rectangle x:Name="Wnd4" Fill="#44000000" Grid.Row="5">
-                                        <Rectangle.Effect>
-                                            <DropShadowEffect BlurRadius="100"/>
-                                        </Rectangle.Effect>
-                                    </Rectangle>
-                                    <Rectangle x:Name="Wnd5" Grid.Column="2" Fill="#44000000" Grid.Row="5">
-                                        <Rectangle.Effect>
-                                            <DropShadowEffect BlurRadius="100"/>
-                                        </Rectangle.Effect>
-                                    </Rectangle>
+                                    <Canvas Grid.Column="2" Grid.Row="3" Width="1470.063" ClipToBounds="True">
+                                        <Canvas Height="1470" Width="1470.064">
+                                            <Rectangle Fill="#FFF1F1F1" Width="1470.064" Height="1470"/>
+                                            <Line X1="735" Y1="100" Height="1470" Width="1470.064" Stroke="#FF272727" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="1370" StrokeStartLineCap="Round" X2="735"/>
+                                            <Line X1="100" Y1="735" Height="1470" Width="1470.064" Stroke="#FF272727" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="735" StrokeStartLineCap="Round" X2="1370"/>
+                                            <Ellipse Height="1008" Canvas.Left="231" Canvas.Top="231" Width="1008" Stroke="#E5008DDE" StrokeThickness="8"/>
+                                            <TextBlock Height="86.365" Canvas.Left="1157.51" TextWrapping="Wrap" Width="297.577" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="635.979" TextAlignment="Center" FontWeight="Bold"><Run Text="sqrt(m₂)"/><Run Text="v₂"/></TextBlock>
+                                            <TextBlock Height="86.365" Canvas.Left="421.003" TextWrapping="Wrap" Width="320" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="88.214" TextAlignment="Center" FontWeight="Bold"><Run Text="sqrt(m₁)"/><Run Text="v₁"/></TextBlock>
+                                            <TextBlock Height="120" Canvas.Left="591.578" TextWrapping="Wrap" Width="120" FontSize="60" Text="0" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Right" FontWeight="Bold"/>
+                                            <TextBlock x:Name="TB_Gr2_Y2" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Text="2" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="235" TextAlignment="Right" FontWeight="Bold"/>
+                                            <TextBlock x:Name="TB_Gr2_X2"  Height="120" Canvas.Left="1088.519" TextWrapping="Wrap" Width="240" FontSize="60" Text="2" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center" FontWeight="Bold"/>
+                                            <TextBlock x:Name="TB_Gr2_Y1" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Text="1" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="469.736" TextAlignment="Right" FontWeight="Bold"/>
+                                            <TextBlock x:Name="TB_Gr2_X1" Height="120" Canvas.Left="848.519" TextWrapping="Wrap" Width="240" FontSize="60" Text="1" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center" FontWeight="Bold"/>
+                                            <TextBlock x:Name="TB_Gr2_Y1m" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="937.242" TextAlignment="Right" FontWeight="Bold"><Run Text="-"/><Run Text="1"/></TextBlock>
+                                            <TextBlock x:Name="TB_Gr2_Y2m" Height="120" Canvas.Left="471.578" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1172.036" TextAlignment="Right" FontWeight="Bold"><Run Text="-"/><Run Text="2"/></TextBlock>
+                                            <TextBlock x:Name="TB_Gr2_X1m" Height="120" Canvas.Left="368.395" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center" FontWeight="Bold"><Run Text="-"/><Run Text="1"/></TextBlock>
+                                            <TextBlock x:Name="TB_Gr2_X2m" Height="120" Canvas.Left="128.395" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="735.157" TextAlignment="Center" FontWeight="Bold"><Run Text="-"/><Run Text="2"/></TextBlock>
+                                            <Canvas x:Name="Canvas_Gr2" Height="1470" Width="1470.064">
+                                                <Line x:Name="Line_Gr2_BtwEl" Height="1470" Width="1470.064" Stroke="#FFDC0078" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" StrokeStartLineCap="Round"/>
+                                                <Ellipse x:Name="Ellipse_Gr2" Height="30" Canvas.Left="220" StrokeThickness="4" Canvas.Top="720" Width="30" Fill="#FFDC0078" Stroke="#FFA40043"/>
+                                            </Canvas>
+                                        </Canvas>
+                                    </Canvas>
+                                    <Canvas Grid.Row="5" ClipToBounds="True">
+                                        <Rectangle Fill="#FFF1F1F1" Width="1470.064" Height="1470"/>
+                                        <Line X1="235" Y1="100" Height="1470" Width="1470.064" Stroke="#FF272727" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="1370" StrokeStartLineCap="Round" X2="235"/>
+                                        <Line X1="100" Y1="1235" Height="1470" Width="1470.064" Stroke="#FF272727" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="1235" StrokeStartLineCap="Round" X2="1370"/>
+                                        <TextBlock Height="120" Canvas.Left="238.785" TextWrapping="Wrap" Width="120" FontSize="90" Text="d₁" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="89.983" TextAlignment="Center" FontWeight="Bold"/>
+                                        <TextBlock Height="120" Canvas.Left="1256.813" TextWrapping="Wrap" Width="120" FontSize="90" Text="d₂" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1119" TextAlignment="Center" FontWeight="Bold"/>
+                                        <TextBlock Height="75" Canvas.Left="64.758" TextWrapping="Wrap" Width="150" FontSize="60" Text="0" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1238.076" TextAlignment="Right" FontWeight="Bold"/>
+                                        <TextBlock x:Name="TB_Gr3_Y_1" Height="80" Canvas.Left="65" TextWrapping="Wrap" Width="150" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="950" TextAlignment="Right" FontWeight="Bold" Text="600"/>
+                                        <TextBlock x:Name="TB_Gr3_Y_2" Height="80" Canvas.Left="65" TextWrapping="Wrap" Width="150" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="700" TextAlignment="Right" FontWeight="Bold" Text="1200"/>
+                                        <TextBlock x:Name="TB_Gr3_Y_3" Height="80" Canvas.Left="65" TextWrapping="Wrap" Width="150" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="450" TextAlignment="Right" FontWeight="Bold" Text="1800"/>
+                                        <TextBlock x:Name="TB_Gr3_Y_4" Height="80" Canvas.Left="65" TextWrapping="Wrap" Width="150" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="200" TextAlignment="Right" FontWeight="Bold" Text="2400"/>
+                                        <TextBlock x:Name="TB_Gr3_X_1" Height="80" Canvas.Left="410" TextWrapping="Wrap" Width="150" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1255" TextAlignment="Center" FontWeight="Bold" Text="600"/>
+                                        <TextBlock x:Name="TB_Gr3_X_2" Height="80" Canvas.Left="660" TextWrapping="Wrap" Width="150" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1255" TextAlignment="Center" FontWeight="Bold" Text="1200"/>
+                                        <TextBlock x:Name="TB_Gr3_X_3" Height="80" Canvas.Left="910" TextWrapping="Wrap" Width="150" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1255" TextAlignment="Center" FontWeight="Bold" Text="1800"/>
+                                        <TextBlock x:Name="TB_Gr3_X_4" Height="80" Canvas.Left="1160" TextWrapping="Wrap" Width="150" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1255" TextAlignment="Center" FontWeight="Bold" Text="2400"/>
+                                        <Line x:Name="Line_B1_Gr3" X1="235" Y1="1235" Height="1470" Width="1470.064" Stroke="#FF1A99E1" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="235" StrokeStartLineCap="Round" X2="1235"/>
+                                        <Line x:Name="Line_B2_Gr3" X1="235" Y1="1141.25" Height="1470" Width="1470.064" Stroke="#FF1A99E1" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="1147" StrokeStartLineCap="Round" X2="1235"/>
+                                        <Canvas x:Name="Canvas_Gr3" Height="1470" Width="1470.064">
+                                            <Line x:Name="Line_Gr3_BtwEl" Height="1470" Width="1470.064" Stroke="#FFDC0078" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" StrokeStartLineCap="Round"/>
+                                            <Ellipse x:Name="Ellipse_Gr3" Height="30" Canvas.Left="1120.129" StrokeThickness="4" Canvas.Top="985.875" Width="30" Fill="#FFDC0078" Stroke="#FFA40043"/>
+                                        </Canvas>
+                                    </Canvas>
+                                    <Canvas Grid.Column="2" Grid.Row="5" ClipToBounds="True">
+                                        <Rectangle Fill="#FFF1F1F1" Width="1470.064" Height="1470"/>
+                                        <Line X1="235" Y1="100" Height="1470" Width="1470.064" Stroke="#FF272727" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="1370" StrokeStartLineCap="Round" X2="235"/>
+                                        <Line X1="100" Y1="1235" Height="1470" Width="1470.064" Stroke="#FF272727" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="1235" StrokeStartLineCap="Round" X2="1370"/>
+                                        <TextBlock Height="75" Canvas.Left="0" TextWrapping="Wrap" Width="220" FontSize="60" Text="0" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1238.076" TextAlignment="Right" FontWeight="Bold"/>
+                                        <TextBlock Height="86.365" Canvas.Left="240" TextWrapping="Wrap" Width="320" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="92.385" TextAlignment="Center" FontWeight="Bold"><Run Text="sqrt(m₁)d"/><Run Text="₁"/></TextBlock>
+                                        <TextBlock Height="86.365" Canvas.Left="1172.486" TextWrapping="Wrap" Width="297.577" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1147.707" TextAlignment="Center" FontWeight="Bold"><Run Text="sqrt(m₂)d"/><Run Text="₂"/></TextBlock>
+                                        <TextBlock x:Name="TB_Gr4_Y_1" Height="80" Canvas.Left="0" TextWrapping="Wrap" Width="220" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="931.981" TextAlignment="Right" FontWeight="Bold" Text="600"/>
+                                        <TextBlock x:Name="TB_Gr4_Y_2" Height="80" Canvas.Left="0" TextWrapping="Wrap" Width="220" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="700" TextAlignment="Right" FontWeight="Bold" Text="1200"/>
+                                        <TextBlock x:Name="TB_Gr4_Y_3" Height="80" Canvas.Left="0" TextWrapping="Wrap" Width="220" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="450" TextAlignment="Right" FontWeight="Bold" Text="1800"/>
+                                        <TextBlock x:Name="TB_Gr4_Y_4" Height="80" TextWrapping="Wrap" Width="220" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="200" TextAlignment="Right" FontWeight="Bold" Text="2400"/>
+                                        <TextBlock x:Name="TB_Gr4_X_1" Height="80" Canvas.Left="365" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1255" TextAlignment="Center" FontWeight="Bold" Text="600"/>
+                                        <TextBlock x:Name="TB_Gr4_X_2" Height="80" Canvas.Left="615" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1255" TextAlignment="Center" FontWeight="Bold" Text="1200"/>
+                                        <TextBlock x:Name="TB_Gr4_X_3" Height="80" Canvas.Left="865" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1255" TextAlignment="Center" FontWeight="Bold" Text="1800"/>
+                                        <TextBlock x:Name="TB_Gr4_X_4" Height="80" Canvas.Left="1115" TextWrapping="Wrap" Width="240" FontSize="60" Foreground="#FF272727" FontFamily="Century Gothic" Canvas.Top="1255" TextAlignment="Center" FontWeight="Bold" Text="2400"/>
+                                        <Line x:Name="Line_B1_Gr4" X1="235" Y1="1235" Height="1470" Width="1470.064" Stroke="#FF1A99E1" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="235" StrokeStartLineCap="Round" X2="1235"/>
+                                        <Line x:Name="Line_B2_Gr4" X1="235" Y1="1141.25" Height="1470" Width="1470.064" Stroke="#FF1A99E1" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="1147" StrokeStartLineCap="Round" X2="1235"/>
+                                        <Canvas x:Name="Canvas_Gr4" Height="1470" Width="1470.064">
+                                            <Line x:Name="Line_Gr4_BtwEl" Height="1470" Width="1470.064" Stroke="#FFDC0078" StrokeThickness="6" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" StrokeStartLineCap="Round"/>
+                                            <Ellipse x:Name="Ellipse_Gr4" Height="30" Canvas.Left="1120.129" StrokeThickness="4" Canvas.Top="985.875" Width="30" Fill="#FFDC0078" Stroke="#FFA40043"/>
+                                        </Canvas>
+                                    </Canvas>
 
                                 </Grid>
                             </Viewbox>
 
                         </Grid>
                     </ScrollViewer>
-                    <ScrollViewer Grid.Column="1" Margin="0,0,0,10" Grid.Row="1" VerticalScrollBarVisibility="Auto" Grid.RowSpan="4">
+                    <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <Grid VerticalAlignment="Top" Height="930.5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" MinWidth="10"/>
@@ -455,22 +413,22 @@
                                 <RowDefinition Height="Auto" MinHeight="10"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,39,0.005,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Первое тело"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,156,0.001,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Второе"/><Run Text=" тело"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,273,0.003,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1" Text="Общее"/>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF26171E" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" FontWeight="Bold" Margin="0.002,0,0,0"><Run Text="Начальные "/><Run Text="значения"/><LineBreak/><Run/><Run Text=" "/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.001,78,-0.001,0" Grid.Column="1"><Run Text="Масса"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,195,174.996,0" Grid.Column="1" Grid.ColumnSpan="2"><Run Text="Масса"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.001,117,0,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,234,0.003,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,312,0.005,0" Grid.Column="1"><Run Text="Упругость"/><Run Text=" "/><LineBreak/><Run/></TextBlock>
-                            <TextBox x:Name="TextBox_Initial_Mass1" Style="{StaticResource TextBoxNumOnlyMStyle}" Grid.Column="2" Height="34" Margin="0.001,78,0.008,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" MaxWidth="197.681" BorderBrush="{x:Null}" Text="1"/>
-                            <TextBox x:Name="TextBox_Initial_Speed1" Style="{StaticResource TextBoxNumOnlyStyle}" Grid.Column="2" Height="34" Margin="0.004,117,0.001,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" Text="0"/>
-                            <TextBox x:Name="TextBox_Initial_Mass2" Style="{StaticResource TextBoxNumOnlyMStyle}" Grid.Column="2" Height="34" Margin="0.004,195,0.001,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" Text="1"/>
-                            <TextBox x:Name="TextBox_Initial_Speed2" Style="{StaticResource TextBoxNumOnlyStyle}" Grid.Column="2" Height="34" Margin="0.004,234,0.001,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" Text="-1"/>
-                            <TextBox x:Name="TextBox_Initial_Resiliency" Style="{StaticResource TextBoxNumOnlyEStyle}" Grid.Column="2" Height="34" Margin="0.004,312,0.005,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" Text="1"/>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF26171E" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" Margin="0.002,351,0.008,0" Text="Переменные" FontWeight="Bold" Grid.Column="1"/>
-                            <Line X2="300" Y1="2" Y2="2" StrokeThickness="3" Grid.ColumnSpan="2" Margin="0,30.5,0,608.5" Grid.Row="1" Grid.Column="1">
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,39,0.005,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Первое тело"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,156,0.001,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Второе"/><Run Text=" тело"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,273,0.003,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1" Text="Общее"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF0053AC" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" FontWeight="Bold" Margin="0.002,0,0,0"><Run Text="Начальные "/><Run Text="значения"/><LineBreak/><Run/><Run Text=" "/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.001,78,-0.001,0" Grid.Column="1"><Run Text="Масса"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,195,174.996,0" Grid.Column="1" Grid.ColumnSpan="2"><Run Text="Масса"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.001,117,0,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,234,0.003,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,312,0.005,0" Grid.Column="1"><Run Text="Упругость"/><Run Text=" "/><LineBreak/><Run/></TextBlock>
+                            <TextBox x:Name="TextBox_Initial_Mass1" Style="{StaticResource TextBoxNumOnlyMStyle}" Grid.Column="2" Height="34" Margin="0.001,78,0.008,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" MaxWidth="197.681" BorderBrush="#FFB0B0B0" Text="1"/>
+                            <TextBox x:Name="TextBox_Initial_Speed1" Style="{StaticResource TextBoxNumOnlyStyle}" Grid.Column="2" Height="34" Margin="0.004,117,0.001,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" Text="0"/>
+                            <TextBox x:Name="TextBox_Initial_Mass2" Style="{StaticResource TextBoxNumOnlyMStyle}" Grid.Column="2" Height="34" Margin="0.004,195,0.001,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" Text="1"/>
+                            <TextBox x:Name="TextBox_Initial_Speed2" Style="{StaticResource TextBoxNumOnlyStyle}" Grid.Column="2" Height="34" Margin="0.004,234,0.001,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" Text="-1"/>
+                            <TextBox x:Name="TextBox_Initial_Resiliency" Style="{StaticResource TextBoxNumOnlyEStyle}" Grid.Column="2" Height="34" Margin="0.004,312,0.005,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" Text="1"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF0053AC" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" Margin="0.002,351,0.008,0" Text="Переменные" FontWeight="Bold" Grid.Column="1"/>
+                            <Line x:Name="line2" Y1="2" Y2="2" StrokeThickness="3" Grid.ColumnSpan="2" Margin="0.02,30.5,0.012,886.5" Grid.Row="1" Grid.Column="1" X2="{Binding ActualWidth, ElementName=line2}">
                                 <Line.Stroke>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <LinearGradientBrush.RelativeTransform>
@@ -481,12 +439,12 @@
                                                 <TranslateTransform/>
                                             </TransformGroup>
                                         </LinearGradientBrush.RelativeTransform>
-                                        <GradientStop Color="#00530022" Offset="0"/>
-                                        <GradientStop Color="#FF530022" Offset="1"/>
+                                        <GradientStop Color="#FF00BBC5"/>
+                                        <GradientStop Color="#FF00BBC5" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Line.Stroke>
                             </Line>
-                            <Line X2="300" Y1="2" Y2="2" StrokeThickness="3" Grid.ColumnSpan="2" Margin="0.002,381.5,7.317,257.5" Grid.Row="1" Grid.Column="1">
+                            <Line X2="{Binding ActualWidth, ElementName=textBlock}" Y1="2" Y2="2" StrokeThickness="3" Grid.ColumnSpan="3" Margin="0.002,381.5,0,535.5" Grid.Row="1" Grid.Column="1">
                                 <Line.Stroke>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <LinearGradientBrush.RelativeTransform>
@@ -497,48 +455,51 @@
                                                 <TranslateTransform/>
                                             </TransformGroup>
                                         </LinearGradientBrush.RelativeTransform>
-                                        <GradientStop Color="#00530022" Offset="0"/>
-                                        <GradientStop Color="#FF530022" Offset="1"/>
+                                        <GradientStop Offset="0" Color="#FF00BBC5"/>
+                                        <GradientStop Color="#FF00BBC5" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Line.Stroke>
                             </Line>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,390,0.005,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Первое тело"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,429,174.996,0" Grid.Column="1" Grid.ColumnSpan="2"><Run Text="Позиция"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0,468,0.008,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,507,0.008,0" Grid.Column="1" Text="Кин. энергия"/>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,546,0.008,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Второе"/><Run Text=" тело"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,585,174.996,0" Grid.Column="1" Grid.ColumnSpan="2"><Run Text="Позиция"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,624,0.008,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.012,663,174.996,0" Grid.Column="1" Text="Кин. энергия" Grid.ColumnSpan="2"/>
-                            <TextBox x:Name="TextBox_Variable_Position1" Grid.Column="2" Height="34" Margin="0.004,429,0.008,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
-                            <TextBox x:Name="TextBox_Variable_Speed1" Grid.Column="2" Height="34" Margin="0.004,468,0.008,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
-                            <TextBox x:Name="TextBox_Variable_KinEnergy1" Grid.Column="2" Height="34" Margin="0,507,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
-                            <TextBox x:Name="TextBox_Variable_Position2" Grid.Column="2" Height="34" Margin="0,585,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
-                            <TextBox x:Name="TextBox_Variable_Speed2" Grid.Column="2" Height="34" Margin="0,624,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
-                            <TextBox x:Name="TextBox_Variable_KinEnergy2" Grid.Column="2" Height="34" Margin="0,663,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
-                            <TextBox x:Name="TextBox_Variable_Collisions" Grid.Column="2" Height="34" Margin="0,741,0.012,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.02,741,174.988,0" Grid.Column="1" Text="Соударения" Grid.ColumnSpan="2"/>
-                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.012,702,9.993,0" Grid.ColumnSpan="3" FontWeight="Bold" Text="Общее" Grid.Column="1"/>
-                            <TextBox x:Name="TextBox_Variable_TestInfo" Grid.Column="1" Height="34" Margin="0,780,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" IsReadOnly="True" Grid.ColumnSpan="2"/>
+                            <TextBlock x:Name="textBlock" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,390,0.005,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Первое тело"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,429,174.996,0" Grid.Column="1" Grid.ColumnSpan="2"><Run Text="Позиция"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0,468,0.008,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,507,0.008,0" Grid.Column="1" Text="Кин. энергия"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,546,0.008,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Второе"/><Run Text=" тело"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,585,174.996,0" Grid.Column="1" Grid.ColumnSpan="2"><Run Text="Позиция"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,624,0.008,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.012,663,174.996,0" Grid.Column="1" Text="Кин. энергия" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="TextBox_Variable_Position1" Grid.Column="2" Height="34" Margin="0.004,429,0.008,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_Speed1" Grid.Column="2" Height="34" Margin="0.004,468,0.008,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_KinEnergy1" Grid.Column="2" Height="34" Margin="0,507,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_Position2" Grid.Column="2" Height="34" Margin="0,585,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_Speed2" Grid.Column="2" Height="34" Margin="0,624,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_KinEnergy2" Grid.Column="2" Height="34" Margin="0,663,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_Collisions" Grid.Column="2" Height="34" Margin="0,741,0.012,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF2C2C2C" SelectionBrush="Black" CaretBrush="Black" Background="#FFF1F1F1" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="#FFB0B0B0" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.02,741,174.988,0" Grid.Column="1" Text="Соударения" Grid.ColumnSpan="2"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF2C2C2C" Grid.Row="1" FontFamily="Century Gothic" Margin="0.012,702,9.993,0" Grid.ColumnSpan="3" FontWeight="Bold" Text="Общее" Grid.Column="1"/>
                         </Grid>
                     </ScrollViewer>
-                    <Button Style="{StaticResource LeftTopButtonStyle}" Click="btn_Start_Click" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="60" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="60" Margin="0,30,0,0">
+                    <Button Style="{StaticResource LeftTopButtonStyle}" Click="btn_Start_Click" Grid.Column="2" HorizontalAlignment="Left" Height="60" Grid.Row="1" VerticalAlignment="Top" Width="60" Margin="0,30,0,0">
                         <Canvas Height="60" Width="60">
-                            <Path x:Name="btnImage_Stop" Data="M34.5,13 L34.5,47 45,47 45,13 z M15,13 L15,47 25.5,47 25.5,13 z M0,0 L15,0 30,0 45,0 C53.284271,0 60,6.7157288 60,15 L60,45 C60,53.284271 53.284271,60 45,60 L30,60 15,60 0,60 0,45 0,15 z" Fill="#FF23151B" Height="60" Stretch="Fill" StrokeLineJoin="Bevel" Width="60" Visibility="Hidden">
+                            <Path x:Name="btnImage_Stop" Data="M34.5,13 L34.5,47 45,47 45,13 z M15,13 L15,47 25.5,47 25.5,13 z M0,0 L15,0 30,0 45,0 C53.284271,0 60,6.7157288 60,15 L60,45 C60,53.284271 53.284271,60 45,60 L30,60 15,60 0,60 0,45 0,15 z" Fill="#FF555555" Height="60" Stretch="Fill" StrokeLineJoin="Bevel" Width="60" Visibility="Hidden">
                                 <Path.Effect>
                                     <DropShadowEffect BlurRadius="26" Opacity="0.265"/>
                                 </Path.Effect>
                             </Path>
-                            <Path x:Name="btnImage_Start" Data="M15,13 L15,47 45,30 z M0,0 L15,0 30,0 45,0 C53.284271,0 60,6.7157288 60,15 L60,45 C60,53.284271 53.284271,60 45,60 L30,60 15,60 0,60 0,45 0,15 z" Fill="#FF23151B" Height="60" Stretch="Fill" StrokeLineJoin="Bevel" Width="60">
+                            <Path x:Name="btnImage_Start" Data="M15,13 L15,47 45,30 z M0,0 L15,0 30,0 45,0 C53.284271,0 60,6.7157288 60,15 L60,45 C60,53.284271 53.284271,60 45,60 L30,60 15,60 0,60 0,45 0,15 z" Fill="#FF555555" Height="60" Stretch="Fill" StrokeLineJoin="Bevel" Width="60">
                                 <Path.Effect>
                                     <DropShadowEffect BlurRadius="26" Opacity="0.265"/>
                                 </Path.Effect>
                             </Path>
                         </Canvas>
                     </Button>
-                    <Button Style="{StaticResource LeftTopButtonStyle}" Click="btn_Restart_Click" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="60" Grid.Row="1" VerticalAlignment="Top" Width="60" Margin="0,95,0,0" Grid.RowSpan="2">
+                    <Button Style="{StaticResource LeftTopButtonStyle}" Click="btn_Restart_Click" Grid.Column="2" HorizontalAlignment="Left" Height="60" Grid.Row="1" VerticalAlignment="Top" Width="60" Margin="0,95,0,0">
                         <Canvas Height="60" Width="60">
-                            <Path Data="M30,13 L18,19.999001 30,26.997999 30,22 C35.523003,22 40,26.476999 40,32 40,37.523003 35.523003,42 30,42 24.477001,42 20,37.523003 20,32 20,30.629 18.871,29.5 17.5,29.5 16.129,29.5 15,30.629 15,32 15,40.229 21.771,47 30,47 38.284,47 45,40.284 45,32 45,23.716 38.284,17&#xD;&#xA;30,17 z M0,0 L15,0 30,0 45,0 C53.284271,0 60,6.7157288 60,15 L60,45 C60,53.284271 53.284271,60 45,60 L30,60 15,60 0,60 0,45 0,15 z" Fill="#FF23151B" Height="60" Stretch="Fill" StrokeLineJoin="Bevel" Width="60"/>
+                            <Path Data="M30,13 L18,19.999001 30,26.997999 30,22 C35.523003,22 40,26.476999 40,32 40,37.523003 35.523003,42 30,42 24.477001,42 20,37.523003 20,32 20,30.629 18.871,29.5 17.5,29.5 16.129,29.5 15,30.629 15,32 15,40.229 21.771,47 30,47 38.284,47 45,40.284 45,32 45,23.716 38.284,17&#xD;&#xA;30,17 z M0,0 L15,0 30,0 45,0 C53.284271,0 60,6.7157288 60,15 L60,45 C60,53.284271 53.284271,60 45,60 L30,60 15,60 0,60 0,45 0,15 z" Fill="#FF555555" Height="60" Stretch="Fill" StrokeLineJoin="Bevel" Width="60">
+                                <Path.Effect>
+                                    <DropShadowEffect BlurRadius="26" Opacity="0.265"/>
+                                </Path.Effect>
+                            </Path>
                         </Canvas>
                     </Button>
                 </Grid>
@@ -551,21 +512,7 @@
             <Thumb x:Name="ThumbBottomLeftCorner" DragDelta="ThumbBottomLeftCorner_DragDelta" Cursor="SizeNESW" Grid.Row="3" Grid.Column="0" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}" />
             <Thumb x:Name="ThumbRight" DragDelta="ThumbRight_DragDelta" Cursor="SizeWE" Grid.Column="2" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}" Grid.Row="1" Grid.RowSpan="2"/>
             <Thumb x:Name="ThumbLeft" DragDelta="ThumbLeft_DragDelta" Cursor="SizeWE" Grid.Column="0" HorizontalContentAlignment="Right" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}" Grid.Row="1" Grid.RowSpan="2"/>
-            <Border x:Name="Top_Panel" MouseMove="Header_MouseMove" Height="35.125" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <LinearGradientBrush.RelativeTransform>
-                            <TransformGroup>
-                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                                <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-90"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF6A0021"/>
-                        <GradientStop Color="#FF5D002E" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+            <Border x:Name="Top_Panel" MouseMove="Header_MouseMove" Height="35.125" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Background="#FF28BBFF">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="29*"/>
@@ -578,29 +525,29 @@
                         <ColumnDefinition Width="Auto" MinWidth="50"/>
                         <ColumnDefinition Width="Auto" MinWidth="50.28"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="btn_Minimize" Style="{StaticResource TopButtonStyle}" BorderThickness="0" Click="btn_Minimize_Click" Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1186.474,23.540 L 1200.473,23.540" Height="15" Width="15" Stretch="Fill" VerticalAlignment="Bottom"/>
+                    <Button x:Name="btn_Minimize" Style="{StaticResource TopButtonStyle}" BorderThickness="0" Click="btn_Minimize_Click" Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FF424242">
+                        <Path StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1186.474,23.540 L 1200.473,23.540" Height="15" Width="15" Stretch="Fill" VerticalAlignment="Bottom"/>
                     </Button>
                     <Button x:Name="btn_Maximize" Style="{StaticResource TopButtonStyle}" BorderThickness="0" Grid.Column="3" Click="btn_Maximize_Click" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Canvas Height="15" Width="15">
-                            <Path x:Name="btnImage_NormalSize" StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1235.471,23.540 L 1221.472,23.540 L 1221.472,9.537 L 1235.471,9.537 L 1235.471,23.540 Z" Height="15" Width="15" RenderTransformOrigin="0.5,0.5" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Path x:Name="btnImage_MaximizedSize" Data="M1,3.9999998 L4.0000323,3.9999998 11,4.0000005 11,13.999999 1,13.999999 z M4.0000323,1 L14.000032,1 14.000032,11 11.000103,11 11.000103,4.0000005 4.0000323,3.9999998 z" HorizontalAlignment="Center" Height="15" RenderTransformOrigin="0.400001292225916,0.600000038146975" StrokeStartLineCap="Round" Stretch="Fill" StrokeEndLineCap="Round" Stroke="#ffc7c7c7" StrokeThickness="2.0" StrokeMiterLimit="1.0" VerticalAlignment="Center" Width="15" Visibility="Hidden"/>
+                            <Path x:Name="btnImage_NormalSize" StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1235.471,23.540 L 1221.472,23.540 L 1221.472,9.537 L 1235.471,9.537 L 1235.471,23.540 Z" Height="15" Width="15" RenderTransformOrigin="0.5,0.5" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Path x:Name="btnImage_MaximizedSize" Data="M1,3.9999998 L4.0000323,3.9999998 11,4.0000005 11,13.999999 1,13.999999 z M4.0000323,1 L14.000032,1 14.000032,11 11.000103,11 11.000103,4.0000005 4.0000323,3.9999998 z" HorizontalAlignment="Center" Height="15" RenderTransformOrigin="0.400001292225916,0.600000038146975" StrokeStartLineCap="Round" Stretch="Fill" StrokeEndLineCap="Round" Stroke="#FF424242" StrokeThickness="2.0" StrokeMiterLimit="1.0" VerticalAlignment="Center" Width="15" Visibility="Hidden"/>
                         </Canvas>
                     </Button>
                     <Button x:Name="btn_Close" Style="{StaticResource TopButtonStyle}" BorderThickness="0" Grid.Column="4" Click="btn_Close_Click" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Canvas Height="15" Width="15">
-                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1256.468,9.537 L 1270.467,23.540" Height="15" Width="15" Stretch="Fill"/>
-                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1270.467,9.537 L 1256.468,23.540" Height="15" Width="15" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1256.468,9.537 L 1270.467,23.540" Height="15" Width="15" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1270.467,9.537 L 1256.468,23.540" Height="15" Width="15" Stretch="Fill"/>
                         </Canvas>
                     </Button>
                     <Viewbox Stretch="Fill">
                         <Grid Height="29.104" Width="43.72">
-                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 10.686,6.278 L 10.686,27.278" Margin="10,9.499,31.72,0" Stretch="Fill"/>
-                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 10.686,27.278 L 37.404,27.278" Margin="10,26.966,5.002,0" Stretch="Fill"/>
-                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 14.745,27.278 L 19.799,27.278 L 19.799,22.222 L 14.745,22.222 L 14.745,27.278 Z" Margin="0,0,13.94,0"/>
-                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 25.964,27.278 L 33.739,27.278 L 33.739,18.556 L 25.964,18.556 L 25.964,27.278 Z"/>
-                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 23.269,18.833 L 23.269,16.778" Margin="22.253,14.625,19.467,9.07" Stretch="Fill"/>
-                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 21.252,20.009 L 19.799,18.556" Margin="18.27,16.084,21.842,8.299" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 10.686,6.278 L 10.686,27.278" Margin="10,9.499,31.72,0" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 10.686,27.278 L 37.404,27.278" Margin="10,26.966,5.002,0" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 14.745,27.278 L 19.799,27.278 L 19.799,22.222 L 14.745,22.222 L 14.745,27.278 Z" Margin="0,0,13.94,0"/>
+                            <Path StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 25.964,27.278 L 33.739,27.278 L 33.739,18.556 L 25.964,18.556 L 25.964,27.278 Z"/>
+                            <Path StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 23.269,18.833 L 23.269,16.778" Margin="22.253,14.625,19.467,9.07" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#FF424242" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 21.252,20.009 L 19.799,18.556" Margin="18.27,16.084,21.842,8.299" Stretch="Fill"/>
                         </Grid>
                     </Viewbox>
                 </Grid>

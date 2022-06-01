@@ -1,19 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImpactSimulation
 {
     static class Graph
     {
-        public static void EllGraphTr(ref (double Y, double X) k, (double X, double Y) speed, (double X, double Y) mass)
+        public static void EllGraphSp(ref (double Y, double X) k, (double X, double Y) speed, (double X, double Y) mass)
         {
-            k.X = Math.Sqrt(Math.Pow(speed.X, 2) + Math.Pow(speed.Y, 2));
-            k.Y = k.X;
-            k.X *= Math.Sqrt(mass.X);
-            k.Y *= Math.Sqrt(mass.Y);
+            k.Y = Math.Sqrt(Math.Pow(speed.X, 2) + Math.Pow(speed.Y, 2));
+            k.X = k.Y;
+            k.Y *= Math.Sqrt(mass.X);
+            k.X *= Math.Sqrt(mass.Y);
+        }
+
+        public static void EllGraphPo(ref (double Y, double X) k, (double X, double Y) mass)
+        {
+            k.Y = Math.Sqrt(mass.X);
+            k.X = Math.Sqrt(mass.Y);
+        }
+
+        public static void EllGraphCi(ref double k, (double X, double Y) speed, (double X, double Y) mass)
+        {
+            k = Math.Sqrt(mass.X * Math.Pow(speed.X, 2) + mass.Y * Math.Pow(speed.Y, 2));
         }
     }
 }
