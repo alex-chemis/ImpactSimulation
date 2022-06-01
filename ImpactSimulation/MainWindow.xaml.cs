@@ -6,6 +6,7 @@ using System.Windows.Interop;
 using winforms = System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using System.Threading;
 using System.IO;
 
 namespace ImpactSimulation
@@ -16,11 +17,21 @@ namespace ImpactSimulation
     public partial class MainWindow : Window
     {
         private bool Maximized = false;
+        private bool Start = false;
+        private bool InProcess = false;
         private int NormalWidth = 0;
         private int NormalHeight = 0;
         private int NormalX = 0;
         private int NormalY = 0;
+        private long Сollisions = 0;
         private string oldStr;
+        private object threadLock = new object();
+
+        private Block Block1;
+        private Block Block2;
+
+        private BackgroundWorker Worker;
+        private Thread LogicalThread;
 
         public MainWindow()
         {
@@ -36,6 +47,17 @@ namespace ImpactSimulation
             {
                 Console.WriteLine("Catch clause caught : {0} \n", e.Message);
             }
+            Worker = ((BackgroundWorker)this.FindResource("backgroundWorker"));
+            Block.Resiliency = Convert.ToDecimal(TextBox_Initial_Resiliency.Text);
+            Block1 = new Block(Convert.ToDecimal(TextBox_Initial_Mass1.Text), ((decimal)Canvas.GetLeft(Border_Block1), (int)Canvas.GetTop(Border_Block1)), (int)Border_Block1.Width, 0);
+            Block2 = new Block(Convert.ToDecimal(TextBox_Initial_Mass2.Text), ((decimal)Canvas.GetLeft(Border_Block2), (int)Canvas.GetTop(Border_Block2)), (int)Border_Block2.Width, -1m / 10000);
+            TextBox_Variable_Collisions.Text = Сollisions.ToString();
+            TextBox_Variable_KinEnergy1.Text = (Block1.Mass * (Block1.Speed * 10000) * (Block1.Speed * 10000) / 2).ToString("G10");
+            TextBox_Variable_KinEnergy2.Text = (Block2.Mass * (Block2.Speed * 10000) * (Block2.Speed * 10000) / 2).ToString("G10");
+            TextBox_Variable_Position1.Text = Block1.Position.X.ToString("G10");
+            TextBox_Variable_Position2.Text = Block2.Position.X.ToString("G10");
+            TextBox_Variable_Speed1.Text = (Block1.Speed * 10000).ToString("G10");
+            TextBox_Variable_Speed2.Text = (Block2.Speed * 10000).ToString("G10");
         }
 
         static void MyHandler(object sender, UnhandledExceptionEventArgs args)
@@ -197,6 +219,8 @@ namespace ImpactSimulation
 
         private void win_Closing(object sender, CancelEventArgs e)
         {
+            if (Start)
+                Worker.CancelAsync();
         }
 
         private void Thumbs()
@@ -232,9 +256,128 @@ namespace ImpactSimulation
 
         private void btn_Start_Click(object sender, RoutedEventArgs e)
         {
+            LogicalThread = new Thread(new ThreadStart(ThreadProc));
+            if (Start)
+            {
+                Start = false;
+                btnImage_Start.Visibility = Visibility.Visible;
+                btnImage_Stop.Visibility = Visibility.Hidden;
+                Worker.CancelAsync();
+            }
+            else
+            {
+                Start = true;
+                if (!InProcess)
+                {
+                    Block1.Mass = Convert.ToDecimal(TextBox_Initial_Mass1.Text);
+                    Block1.Speed = Convert.ToDecimal(TextBox_Initial_Speed1.Text) / 10000;
+                    Block2.Mass = Convert.ToDecimal(TextBox_Initial_Mass2.Text);
+                    Block2.Speed = Convert.ToDecimal(TextBox_Initial_Speed2.Text) / 10000;
+                    Block.Resiliency = Convert.ToDecimal(TextBox_Initial_Resiliency.Text);
+                    Canvas.SetLeft(Border_Block1, (double)Block1.Position.X);
+                    Canvas.SetLeft(Border_Block2, (double)Block2.Position.X);
+                    Сollisions = 0;
+                    TextBox_Variable_Collisions.Text = Сollisions.ToString();
+                    InProcess = true;
+                }
+                btnImage_Start.Visibility = Visibility.Hidden;
+                btnImage_Stop.Visibility = Visibility.Visible;
+                Worker.RunWorkerAsync();
+                LogicalThread.Start();
+            }
         }
         private void btn_Restart_Click(object sender, RoutedEventArgs e)
         {
+            if (!Start)
+            {
+                InProcess = false;
+            }
+            lock (threadLock)
+            {
+                Block1.Mass = Convert.ToDecimal(TextBox_Initial_Mass1.Text);
+                Block1.Speed = Convert.ToDecimal(TextBox_Initial_Speed1.Text) / 10000;
+                Block2.Mass = Convert.ToDecimal(TextBox_Initial_Mass2.Text);
+                Block2.Speed = Convert.ToDecimal(TextBox_Initial_Speed2.Text) / 10000;
+                Block.Resiliency = Convert.ToDecimal(TextBox_Initial_Resiliency.Text);
+                Block1.Position.X = 1100;
+                Block2.Position.X = 1700;
+                Canvas.SetLeft(Border_Block1, (double)Block1.Position.X);
+                Canvas.SetLeft(Border_Block2, (double)Block2.Position.X);
+                Сollisions = 0;
+                TextBox_Variable_Collisions.Text = Сollisions.ToString();
+                TextBox_Variable_Collisions.Text = Сollisions.ToString();
+                TextBox_Variable_KinEnergy1.Text = (Block1.Mass * (Block1.Speed * 10000) * (Block1.Speed * 10000) / 2).ToString("G10");
+                TextBox_Variable_KinEnergy2.Text = (Block2.Mass * (Block2.Speed * 10000) * (Block2.Speed * 10000) / 2).ToString("G10");
+                TextBox_Variable_Position1.Text = Block1.Position.X.ToString("G10");
+                TextBox_Variable_Position2.Text = Block2.Position.X.ToString("G10");
+                TextBox_Variable_Speed1.Text = (Block1.Speed * 10000).ToString("G10");
+                TextBox_Variable_Speed2.Text = (Block2.Speed * 10000).ToString("G10");
+            }
+        }
+
+        private void ThreadProc()
+        {
+            while (true)
+            {
+                if (Worker.CancellationPending)
+                    break;
+                lock (threadLock)
+                {
+                    Block1.Position.X += Block1.Speed;
+                    Block2.Position.X += Block2.Speed;
+                    if (Block1.Position.X < 400)
+                    {
+                        Block.Impact(Block1);
+                        Сollisions++;
+                    }
+                    if (Block1.Position.X + Block1.Size > Block2.Position.X)
+                    {
+                        Block.Impact(Block1, Block2);
+                        Сollisions++;
+                    }
+                }
+                //Thread.Sleep(new TimeSpan(10));
+            }
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            long update = 0;
+            while (true)
+            {
+                if (Worker.CancellationPending)
+                    break;
+                if (Worker.WorkerReportsProgress)
+                    Worker.ReportProgress(1);
+                update++;
+                Thread.Sleep(1);
+            }
+        }
+
+        void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            lock (threadLock)
+            {
+                TextBox_Variable_Collisions.Text = Сollisions.ToString();
+                TextBox_Variable_KinEnergy1.Text = (Block1.Mass * (Block1.Speed * 10000) * (Block1.Speed * 10000) / 2).ToString("G10");
+                TextBox_Variable_KinEnergy2.Text = (Block2.Mass * (Block2.Speed * 10000) * (Block2.Speed * 10000) / 2).ToString("G10");
+                TextBox_Variable_Position1.Text = Block1.Position.X.ToString("G10");
+                TextBox_Variable_Position2.Text = Block2.Position.X.ToString("G10");
+                TextBox_Variable_Speed1.Text = (Block1.Speed * 10000).ToString("G10");
+                TextBox_Variable_Speed2.Text = (Block2.Speed * 10000).ToString("G10");
+                decimal tempPosBl1 = Block1.Position.X;
+                decimal tempPosBl2 = Block2.Position.X;
+                Canvas.SetLeft(Border_Block1, tempPosBl1 >= 400 && tempPosBl1 <= tempPosBl2 ? (double)tempPosBl1 : 400);
+                Canvas.SetLeft(Border_Block2, tempPosBl2 >= Block1.Size + 400 ? (double)tempPosBl2 : Block1.Size + 400);
+            }
+        }
+
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message, "Произошла ошибка");
+            }
         }
 
         private void PreviewTextInputT(object sender, TextCompositionEventArgs e)
