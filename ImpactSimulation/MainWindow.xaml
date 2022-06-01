@@ -5,8 +5,527 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImpactSimulation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" SizeChanged="win_SizeChanged" Closing="win_Closing" Height="720" Width="1280" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" MinHeight="360" MinWidth="640">
+    <Window.Resources>
+        <Style x:Key="ScrollBarLineButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Canvas Height="18">
+                            <Polygon Fill="#FFBF0068" Points="2,15 15,15 8.5,3" Width="17" HorizontalAlignment="Stretch" Height="18"></Polygon>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-    </Grid>
+        <Style x:Key="ScrollBarLineButtonBottomStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Canvas Height="18">
+                            <Polygon Fill="#FFBF0068" Points="2,3 8.5,15 15,3" Width="17" Height="18"></Polygon>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarPageButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border BorderBrush="Transparent" Background="#03000000">
+                            <Rectangle Fill="#FF68023A" Margin="2" Width="4"></Rectangle>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarThumbStyle" TargetType="{x:Type Thumb}">
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Margin" Value="1,0,1,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Rectangle Fill="#FF950051" Margin="2"></Rectangle>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="18"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition MaxHeight="18"/>
+                </Grid.RowDefinitions>
+
+                <RepeatButton Grid.Row="0" Height="18"
+                          Style="{StaticResource ScrollBarLineButtonStyle}"
+                          Command="ScrollBar.LineUpCommand" >
+                </RepeatButton>
+                <Track Name="PART_Track" Grid.Row="1" 
+                   IsDirectionReversed="True">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
+                        </RepeatButton>
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumbStyle}">
+                        </Thumb>
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.PageDownCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
+                        </RepeatButton>
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Row="3" Height="18"
+                          Style="{StaticResource ScrollBarLineButtonBottomStyle}"
+                          Command="ScrollBar.LineDownCommand">
+                </RepeatButton>
+            </Grid>
+        </ControlTemplate>
+
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
+        </Style>
+
+        <Style x:Key="BorderThumb" TargetType="Thumb">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Rectangle MinWidth="5" MinHeight="5" StrokeThickness="0">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Opacity="1" Color="#03000000"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TopButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#00000000"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4C000000"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="LeftTopButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Canvas>
+                            <Path Data="M0,0 L30,0 C46.568542,0 60,13.431458 60,30 60,46.568542 46.568542,60 30,60 L0,60 0,30 z" Fill="{TemplateBinding Control.Background}" Height="60" Stretch="Fill" Stroke="#00000000" Width="60" StrokeThickness="4"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFBF1A56"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Border BorderThickness="1" CornerRadius="5">
+        <Grid Margin="-1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MinHeight="35.125"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeThickness="0" StrokeMiterLimit="1.0" Fill="#FF4E3139">
+                <Rectangle.Effect>
+                    <DropShadowEffect ShadowDepth="0" Opacity="0.5"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Border Grid.Column="1" Grid.Row="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="10"/>
+                        <RowDefinition Height="29*"/>
+                        <RowDefinition Height="80*"/>
+                        <RowDefinition Height="218*"/>
+                        <RowDefinition Height="10.875"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="10"/>
+                        <ColumnDefinition Width="Auto" MinWidth="373.681"/>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="119*"/>
+                        <ColumnDefinition Width="192*"/>
+                        <ColumnDefinition Width="544*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <LinearGradientBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                    <RotateTransform Angle="142" CenterY="0.5" CenterX="0.5"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop Color="#FF342037" Offset="0"/>
+                            <GradientStop Color="#FF4E3139" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Path Data="F1 M 541.504,33.077 L 0.000,502.186 L 0.000,720.000 L 83.446,720.000 L 876.378,33.077 L 541.504,33.077 Z" Margin="0,0,385.455,0" Stretch="Fill" Grid.RowSpan="5" Grid.ColumnSpan="6">
+                        <Path.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" Opacity="0.22">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                        <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-45"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <GradientStop Color="#FF29121C" Offset="0.527"/>
+                                <GradientStop Color="#00421630"/>
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                    <Path Data="F1 M 1280.000,205.531 L 686.136,720.000 L 867.068,720.000 L 1280.000,362.274 L 1280.000,205.531 Z" Grid.Row="3" Stretch="Fill" Grid.Column="5" Grid.RowSpan="2">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,-1" Opacity="0.095">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                        <SkewTransform CenterY="0.5" CenterX="0.5" AngleY="-74"/>
+                                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-19"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.Transform>
+                                    <MatrixTransform Matrix="1.000,0.000,1.155,-1.000,653.679,0.000" />
+                                </LinearGradientBrush.Transform>
+                                <GradientStop Color="#FF2E0F22" Offset="1"/>
+                                <GradientStop Offset="0.41" Color="#FF13080D"/>
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                    <Path Data="F1 M 1228.020,33.077 L 1280.000,33.077 L 487.067,720.000 L 435.087,720.000 L 1228.020,33.077 Z" Margin="0.171,0,0,0" Stretch="Fill" Grid.Column="3" Grid.RowSpan="5" Grid.ColumnSpan="3">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,-1" Opacity="0.1">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                        <SkewTransform CenterY="0.5" CenterX="0.5" AngleY="-74"/>
+                                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-19"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.Transform>
+                                    <MatrixTransform Matrix="1.000,0.000,1.155,-1.000,653.679,0.000" />
+                                </LinearGradientBrush.Transform>
+                                <GradientStop Color="#FF401C32" Offset="1"/>
+                                <GradientStop Offset="0.41" Color="#FF29121C"/>
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                    <Path Data="F1 M 1280.000,64.697 L 523.568,720.000 L 641.639,720.000 L 1280.000,166.983 L 1280.000,64.697 Z" Grid.Row="2" Stretch="Fill" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,-1" Opacity="0.1">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                        <SkewTransform CenterY="0.5" CenterX="0.5" AngleY="-74"/>
+                                        <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-19"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.Transform>
+                                    <MatrixTransform Matrix="1.000,0.000,1.155,-1.000,653.679,0.000" />
+                                </LinearGradientBrush.Transform>
+                                <GradientStop Color="#FF401930" Offset="1"/>
+                                <GradientStop Offset="0.41" Color="#FF29121C"/>
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                    <Path Opacity="0.8" Data="F1 M 378.367,709.727 L 10.686,709.727 L 10.686,45.076 L 378.367,45.076 L 378.367,709.727 Z" Margin="0,0,0,0.002" Stretch="Fill" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+                        <Path.Effect>
+                            <DropShadowEffect BlurRadius="52" Color="#FC000000" Opacity="0.4" RenderingBias="Quality"/>
+                        </Path.Effect>
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="-0.237,-0.323" EndPoint="1.292,-0.813">
+                                <LinearGradientBrush.Transform>
+                                    <MatrixTransform Matrix="1.000,0.000,-0.000,-1.000,0.000,0.000" />
+                                </LinearGradientBrush.Transform>
+                                <GradientStop Offset="0.00" Color="#FF8D0335"/>
+                                <GradientStop Offset="1.00" Color="#FF590231"/>
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="4" Grid.RowSpan="5" Grid.Column="2">
+                        <Grid Width="{Binding ActualWidth, ElementName=scrollViewer}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="343*"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Viewbox Grid.Column="1">
+                                <Grid Height="5257.861" Width="3234.14">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" MinHeight="126"/>
+                                        <RowDefinition Height="1470"/>
+                                        <RowDefinition Height="294"/>
+                                        <RowDefinition Height="1470"/>
+                                        <RowDefinition Height="294"/>
+                                        <RowDefinition Height="1470"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1470.064"/>
+                                        <ColumnDefinition Width="294.013"/>
+                                        <ColumnDefinition Width="1470.063"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Canvas x:Name="Wnd1" Grid.ColumnSpan="3" Grid.Row="1">
+                                        <Rectangle Fill="#44000000" Height="1470" Width="3234.14">
+                                            <Rectangle.Effect>
+                                                <DropShadowEffect BlurRadius="100"/>
+                                            </Rectangle.Effect>
+                                        </Rectangle>
+                                        <Line x:Name="line" X1="400" Y1="325" Height="1470" Width="3234.14" Stroke="#FFC7C7C7" StrokeThickness="8" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" X2="{Binding X1, ElementName=line}" Y2="1125" StrokeStartLineCap="Round"/>
+                                        <Line x:Name="line1" Y1="1125" Height="1470" Width="3234.14" Stroke="#FFC7C7C7" StrokeThickness="8" StrokeDashCap="Round" StrokeEndLineCap="Round" RenderTransformOrigin="0.5,0.5" Y2="{Binding Y1, ElementName=line1}" X2="2830" X1="400" StrokeStartLineCap="Round"/>
+                                        <Border x:Name="Border_Block1" Height="225" Canvas.Left="1100" Canvas.Top="896" Width="225">
+                                            <Grid>
+                                                <Rectangle Margin="0.8,0,0,0" Opacity="0.895">
+                                                    <Rectangle.Effect>
+                                                        <DropShadowEffect BlurRadius="40" Opacity="0.2"/>
+                                                    </Rectangle.Effect>
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                            <LinearGradientBrush.RelativeTransform>
+                                                                <TransformGroup>
+                                                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                                                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                                                    <RotateTransform Angle="135" CenterY="0.5" CenterX="0.5"/>
+                                                                    <TranslateTransform/>
+                                                                </TransformGroup>
+                                                            </LinearGradientBrush.RelativeTransform>
+                                                            <GradientStop Color="#FF63001B" Offset="0"/>
+                                                            <GradientStop Color="#FF80001D" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                            </Grid>
+                                        </Border>
+                                        <Border x:Name="Border_Block2" Height="225" Canvas.Left="1700" Canvas.Top="896" Width="225">
+                                            <Grid>
+                                                <Rectangle Opacity="0.895">
+                                                    <Rectangle.Effect>
+                                                        <DropShadowEffect BlurRadius="40" Opacity="0.195"/>
+                                                    </Rectangle.Effect>
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                            <LinearGradientBrush.RelativeTransform>
+                                                                <TransformGroup>
+                                                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                                                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                                                    <RotateTransform Angle="135" CenterY="0.5" CenterX="0.5"/>
+                                                                    <TranslateTransform/>
+                                                                </TransformGroup>
+                                                            </LinearGradientBrush.RelativeTransform>
+                                                            <GradientStop Color="#FF5D002E" Offset="0"/>
+                                                            <GradientStop Color="#FF85003D" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                            </Grid>
+                                        </Border>
+                                    </Canvas>
+                                    <Rectangle x:Name="Wnd2" Fill="#44000000" Grid.Row="3" Width="1470.064">
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect BlurRadius="100"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                    <Rectangle x:Name="Wnd3" Grid.Column="2" Fill="#44000000" Grid.Row="3" Width="1470.063">
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect BlurRadius="100"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                    <Rectangle x:Name="Wnd4" Fill="#44000000" Grid.Row="5">
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect BlurRadius="100"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                    <Rectangle x:Name="Wnd5" Grid.Column="2" Fill="#44000000" Grid.Row="5">
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect BlurRadius="100"/>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+
+                                </Grid>
+                            </Viewbox>
+
+                        </Grid>
+                    </ScrollViewer>
+                    <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" Grid.RowSpan="3">
+                        <Grid VerticalAlignment="Top" Height="930.5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" MinWidth="10"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="175"/>
+                                <ColumnDefinition Width="Auto" MinWidth="10"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" MinHeight="10"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Line X2="300" Y1="2" Y2="2" StrokeThickness="3" Grid.ColumnSpan="2" Margin="0,30.5,0,608.5" Grid.Row="1" Grid.Column="1">
+                                <Line.Stroke>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                                <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#00530022" Offset="0"/>
+                                        <GradientStop Color="#FF530022" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Line.Stroke>
+                            </Line>
+                            <Line X2="300" Y1="2" Y2="2" StrokeThickness="3" Grid.ColumnSpan="2" Margin="0.002,381.5,7.317,257.5" Grid.Row="1" Grid.Column="1">
+                                <Line.Stroke>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                                <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#00530022" Offset="0"/>
+                                        <GradientStop Color="#FF530022" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Line.Stroke>
+                            </Line>
+                        </Grid>
+                    </ScrollViewer>
+                    <Button Style="{StaticResource LeftTopButtonStyle}" Click="btn_Start_Click" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="60" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="60" Margin="0,30,0,0">
+                        <Canvas Height="60" Width="60">
+                            <Path x:Name="btnImage_Stop" Data="M34.5,13 L34.5,47 45,47 45,13 z M15,13 L15,47 25.5,47 25.5,13 z M0,0 L15,0 30,0 45,0 C53.284271,0 60,6.7157288 60,15 L60,45 C60,53.284271 53.284271,60 45,60 L30,60 15,60 0,60 0,45 0,15 z" Fill="#FF23151B" Height="60" Stretch="Fill" StrokeLineJoin="Bevel" Width="60" Visibility="Hidden">
+                                <Path.Effect>
+                                    <DropShadowEffect BlurRadius="26" Opacity="0.265"/>
+                                </Path.Effect>
+                            </Path>
+                            <Path x:Name="btnImage_Start" Data="M15,13 L15,47 45,30 z M0,0 L15,0 30,0 45,0 C53.284271,0 60,6.7157288 60,15 L60,45 C60,53.284271 53.284271,60 45,60 L30,60 15,60 0,60 0,45 0,15 z" Fill="#FF23151B" Height="60" Stretch="Fill" StrokeLineJoin="Bevel" Width="60">
+                                <Path.Effect>
+                                    <DropShadowEffect BlurRadius="26" Opacity="0.265"/>
+                                </Path.Effect>
+                            </Path>
+                        </Canvas>
+                    </Button>
+                    <Button Style="{StaticResource LeftTopButtonStyle}" Click="btn_Restart_Click" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="60" Grid.Row="1" VerticalAlignment="Top" Width="60" Margin="0,95,0,0" Grid.RowSpan="2">
+                        <Canvas Height="60" Width="60">
+                            <Path Data="M30,13 L18,19.999001 30,26.997999 30,22 C35.523003,22 40,26.476999 40,32 40,37.523003 35.523003,42 30,42 24.477001,42 20,37.523003 20,32 20,30.629 18.871,29.5 17.5,29.5 16.129,29.5 15,30.629 15,32 15,40.229 21.771,47 30,47 38.284,47 45,40.284 45,32 45,23.716 38.284,17&#xD;&#xA;30,17 z M0,0 L15,0 30,0 45,0 C53.284271,0 60,6.7157288 60,15 L60,45 C60,53.284271 53.284271,60 45,60 L30,60 15,60 0,60 0,45 0,15 z" Fill="#FF23151B" Height="60" Stretch="Fill" StrokeLineJoin="Bevel" Width="60"/>
+                        </Canvas>
+                    </Button>
+                </Grid>
+            </Border>
+            <Thumb x:Name="ThumbBottom" DragDelta="ThumbBottom_DragDelta" HorizontalAlignment="Stretch" Cursor="SizeNS" Grid.Column="1" Background="{x:Null}" Grid.Row="3" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}"/>
+            <Thumb x:Name="ThumbTop" DragDelta="ThumbTop_DragDelta" HorizontalAlignment="Stretch" Cursor="SizeNS" Grid.Column="1" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}"/>
+            <Thumb x:Name="ThumbBottomRightCorner" DragDelta="ThumbBottomRightCorner_DragDelta" Cursor="SizeNWSE" Grid.Row="3" Grid.Column="2" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}"/>
+            <Thumb x:Name="ThumbTopRightCorner" DragDelta="ThumbTopRightCorner_DragDelta" Cursor="SizeNESW" Grid.Row="0" Grid.Column="2" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}"/>
+            <Thumb x:Name="ThumbTopLeftCorner" DragDelta="ThumbTopLeftCorner_DragDelta" Cursor="SizeNWSE" Grid.Row="0" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}" />
+            <Thumb x:Name="ThumbBottomLeftCorner" DragDelta="ThumbBottomLeftCorner_DragDelta" Cursor="SizeNESW" Grid.Row="3" Grid.Column="0" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}" />
+            <Thumb x:Name="ThumbRight" DragDelta="ThumbRight_DragDelta" Cursor="SizeWE" Grid.Column="2" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}" Grid.Row="1" Grid.RowSpan="2"/>
+            <Thumb x:Name="ThumbLeft" DragDelta="ThumbLeft_DragDelta" Cursor="SizeWE" Grid.Column="0" HorizontalContentAlignment="Right" Background="{x:Null}" Style="{Binding Mode=OneWay, Source={StaticResource BorderThumb}}" Foreground="{x:Null}" Grid.Row="1" Grid.RowSpan="2"/>
+            <Border x:Name="Top_Panel" MouseMove="Header_MouseMove" Height="35.125" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform CenterY="0.5" CenterX="0.5" Angle="-90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF6A0021"/>
+                        <GradientStop Color="#FF5D002E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="29*"/>
+                        <RowDefinition Height="6*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto" MinWidth="50"/>
+                        <ColumnDefinition Width="Auto" MinWidth="50"/>
+                        <ColumnDefinition Width="Auto" MinWidth="50.28"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btn_Minimize" Style="{StaticResource TopButtonStyle}" BorderThickness="0" Click="btn_Minimize_Click" Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1186.474,23.540 L 1200.473,23.540" Height="15" Width="15" Stretch="Fill" VerticalAlignment="Bottom"/>
+                    </Button>
+                    <Button x:Name="btn_Maximize" Style="{StaticResource TopButtonStyle}" BorderThickness="0" Grid.Column="3" Click="btn_Maximize_Click" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Canvas Height="15" Width="15">
+                            <Path x:Name="btnImage_NormalSize" StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1235.471,23.540 L 1221.472,23.540 L 1221.472,9.537 L 1235.471,9.537 L 1235.471,23.540 Z" Height="15" Width="15" RenderTransformOrigin="0.5,0.5" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Path x:Name="btnImage_MaximizedSize" Data="M1,3.9999998 L4.0000323,3.9999998 11,4.0000005 11,13.999999 1,13.999999 z M4.0000323,1 L14.000032,1 14.000032,11 11.000103,11 11.000103,4.0000005 4.0000323,3.9999998 z" HorizontalAlignment="Center" Height="15" RenderTransformOrigin="0.400001292225916,0.600000038146975" StrokeStartLineCap="Round" Stretch="Fill" StrokeEndLineCap="Round" Stroke="#ffc7c7c7" StrokeThickness="2.0" StrokeMiterLimit="1.0" VerticalAlignment="Center" Width="15" Visibility="Hidden"/>
+                        </Canvas>
+                    </Button>
+                    <Button x:Name="btn_Close" Style="{StaticResource TopButtonStyle}" BorderThickness="0" Grid.Column="4" Click="btn_Close_Click" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Canvas Height="15" Width="15">
+                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1256.468,9.537 L 1270.467,23.540" Height="15" Width="15" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 1270.467,9.537 L 1256.468,23.540" Height="15" Width="15" Stretch="Fill"/>
+                        </Canvas>
+                    </Button>
+                    <Viewbox Stretch="Fill">
+                        <Grid Height="29.104" Width="43.72">
+                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 10.686,6.278 L 10.686,27.278" Margin="10,9.499,31.72,0" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 10.686,27.278 L 37.404,27.278" Margin="10,26.966,5.002,0" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 14.745,27.278 L 19.799,27.278 L 19.799,22.222 L 14.745,22.222 L 14.745,27.278 Z" Margin="0,0,13.94,0"/>
+                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 25.964,27.278 L 33.739,27.278 L 33.739,18.556 L 25.964,18.556 L 25.964,27.278 Z"/>
+                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 23.269,18.833 L 23.269,16.778" Margin="22.253,14.625,19.467,9.07" Stretch="Fill"/>
+                            <Path StrokeThickness="2.0" Stroke="#ffc7c7c7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 21.252,20.009 L 19.799,18.556" Margin="18.27,16.084,21.842,8.299" Stretch="Fill"/>
+                        </Grid>
+                    </Viewbox>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
 </Window>
