@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Interop;
 using winforms = System.Windows.Forms;
+using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.IO;
 
@@ -17,7 +20,7 @@ namespace ImpactSimulation
         private int NormalHeight = 0;
         private int NormalX = 0;
         private int NormalY = 0;
-        private object threadLock = new object();
+        private string oldStr;
 
         public MainWindow()
         {
@@ -232,6 +235,51 @@ namespace ImpactSimulation
         }
         private void btn_Restart_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void PreviewTextInputT(object sender, TextCompositionEventArgs e)
+        {
+            Regex regexF = new Regex(@"^[0-9-,]*$");
+            e.Handled = !regexF.IsMatch(e.Text);
+        }
+
+        private void PreviewTextInputTP(object sender, TextCompositionEventArgs e)
+        {
+            Regex regexF = new Regex(@"^[0-9,]*$");
+            e.Handled = !regexF.IsMatch(e.Text);
+        }
+
+        private void GotFocusT(object sender, RoutedEventArgs e)
+        {
+            TextBox b = e.Source as TextBox;
+            oldStr = b.Text;
+        }
+
+        private void LostFocusT(object sender, RoutedEventArgs e)
+        {
+            TextBox b = e.Source as TextBox;
+            if (b.Text.Length == 0)
+                b.Text = "0";
+            else if (!double.TryParse(b.Text, out _))
+                b.Text = oldStr;
+        }
+
+        private void LostFocusTM(object sender, RoutedEventArgs e)
+        {
+            TextBox b = e.Source as TextBox;
+            if (b.Text.Length == 0)
+                b.Text = "1";
+            else if (!decimal.TryParse(b.Text, out decimal temp) || temp == 0)
+                b.Text = oldStr;
+        }
+
+        private void LostFocusTE(object sender, RoutedEventArgs e)
+        {
+            TextBox b = e.Source as TextBox;
+            if (b.Text.Length == 0)
+                b.Text = "1";
+            else if (!decimal.TryParse(b.Text, out decimal temp) || temp > 1)
+                b.Text = oldStr;
         }
 
         #endregion

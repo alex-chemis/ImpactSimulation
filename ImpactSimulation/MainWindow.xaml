@@ -152,6 +152,24 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="TextBoxNumOnlyStyle" TargetType="TextBox">
+            <EventSetter Event="PreviewTextInput" Handler="PreviewTextInputT"/>
+            <EventSetter Event="GotFocus" Handler="GotFocusT"/>
+            <EventSetter Event="LostFocus" Handler="LostFocusT"/>
+        </Style>
+
+        <Style x:Key="TextBoxNumOnlyMStyle" TargetType="TextBox">
+            <EventSetter Event="PreviewTextInput" Handler="PreviewTextInputTP"/>
+            <EventSetter Event="GotFocus" Handler="GotFocusT"/>
+            <EventSetter Event="LostFocus" Handler="LostFocusTM"/>
+        </Style>
+
+        <Style x:Key="TextBoxNumOnlyEStyle" TargetType="TextBox">
+            <EventSetter Event="PreviewTextInput" Handler="PreviewTextInputTP"/>
+            <EventSetter Event="GotFocus" Handler="GotFocusT"/>
+            <EventSetter Event="LostFocus" Handler="LostFocusTE"/>
+        </Style>
     </Window.Resources>
     <Border BorderThickness="1" CornerRadius="5">
         <Grid Margin="-1">
@@ -345,6 +363,8 @@
                                                         </LinearGradientBrush>
                                                     </Rectangle.Fill>
                                                 </Rectangle>
+                                                <TextBlock TextWrapping="Wrap" Text="{Binding Text, ElementName=TextBox_Initial_Mass1}" Margin="0,58.85,0,62.623" VerticalAlignment="Center" Height="111.258" TextAlignment="Center" FontSize="90" FontFamily="Century Gothic" FontWeight="SemiBold" Foreground="#FF26171E"/>
+                                                <TextBlock Height="90" Margin="0.8,-90,0,0" TextWrapping="Wrap" Text="Тело 1" VerticalAlignment="Top" TextAlignment="Center" FontSize="60" Foreground="#FFC7C7C7" FontFamily="Century Gothic"/>
                                             </Grid>
                                         </Border>
                                         <Border x:Name="Border_Block2" Height="225" Canvas.Left="1700" Canvas.Top="896" Width="225">
@@ -368,6 +388,8 @@
                                                         </LinearGradientBrush>
                                                     </Rectangle.Fill>
                                                 </Rectangle>
+                                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Height="116.063" FontSize="90" TextAlignment="Center" Text="{Binding Text, ElementName=TextBox_Initial_Mass2}" Foreground="#FF26171E" FontFamily="Century Gothic" FontWeight="SemiBold"/>
+                                                <TextBlock TextWrapping="Wrap" FontSize="60" TextAlignment="Center" Text="Тело 2" Foreground="#FFC7C7C7" FontFamily="Century Gothic" Margin="0,-90,0,0" Height="90" VerticalAlignment="Top"/>
                                             </Grid>
                                         </Border>
                                     </Canvas>
@@ -397,7 +419,7 @@
 
                         </Grid>
                     </ScrollViewer>
-                    <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" Grid.RowSpan="3">
+                    <ScrollViewer Grid.Column="1" Margin="0,0,0,0.002" Grid.Row="1" VerticalScrollBarVisibility="Auto" Grid.RowSpan="3">
                         <Grid VerticalAlignment="Top" Height="930.5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" MinWidth="10"/>
@@ -409,6 +431,21 @@
                                 <RowDefinition Height="Auto" MinHeight="10"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,39,0.005,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Первое тело"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,156,0.001,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Второе"/><Run Text=" тело"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,273,0.003,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1" Text="Общее"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF26171E" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" FontWeight="Bold" Margin="0.002,0,0,0"><Run Text="Начальные "/><Run Text="значения"/><LineBreak/><Run/><Run Text=" "/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.001,78,-0.001,0" Grid.Column="1"><Run Text="Масса"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,195,174.996,0" Grid.Column="1" Grid.ColumnSpan="2"><Run Text="Масса"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.001,117,0,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,234,0.003,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.002,312,0.005,0" Grid.Column="1"><Run Text="Упругость"/><Run Text=" "/><LineBreak/><Run/></TextBlock>
+                            <TextBox x:Name="TextBox_Initial_Mass1" Style="{StaticResource TextBoxNumOnlyMStyle}" Grid.Column="2" Height="34" Margin="0.001,78,0.008,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" MaxWidth="197.681" BorderBrush="{x:Null}" Text="1"/>
+                            <TextBox x:Name="TextBox_Initial_Speed1" Style="{StaticResource TextBoxNumOnlyStyle}" Grid.Column="2" Height="34" Margin="0.004,117,0.001,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" Text="0"/>
+                            <TextBox x:Name="TextBox_Initial_Mass2" Style="{StaticResource TextBoxNumOnlyMStyle}" Grid.Column="2" Height="34" Margin="0.004,195,0.001,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" Text="1"/>
+                            <TextBox x:Name="TextBox_Initial_Speed2" Style="{StaticResource TextBoxNumOnlyStyle}" Grid.Column="2" Height="34" Margin="0.004,234,0.001,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" Text="-1"/>
+                            <TextBox x:Name="TextBox_Initial_Resiliency" Style="{StaticResource TextBoxNumOnlyEStyle}" Grid.Column="2" Height="34" Margin="0.004,312,0.005,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" Text="1"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FF26171E" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" Margin="0.002,351,0.008,0" Text="Переменные" FontWeight="Bold" Grid.Column="1"/>
                             <Line X2="300" Y1="2" Y2="2" StrokeThickness="3" Grid.ColumnSpan="2" Margin="0,30.5,0,608.5" Grid.Row="1" Grid.Column="1">
                                 <Line.Stroke>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -441,6 +478,23 @@
                                     </LinearGradientBrush>
                                 </Line.Stroke>
                             </Line>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,390,0.005,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Первое тело"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,429,174.996,0" Grid.Column="1" Grid.ColumnSpan="2"><Run Text="Позиция"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0,468,0.008,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,507,0.008,0" Grid.Column="1" Text="Кин. энергия"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,546,0.008,0" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1"><Run Text="Второе"/><Run Text=" тело"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,585,174.996,0" Grid.Column="1" Grid.ColumnSpan="2"><Run Text="Позиция"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.008,624,0.008,0" Grid.Column="1"><Run Text="Скорость"/><LineBreak/><Run/></TextBlock>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.012,663,174.996,0" Grid.Column="1" Text="Кин. энергия" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="TextBox_Variable_Position1" Grid.Column="2" Height="34" Margin="0.004,429,0.008,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_Speed1" Grid.Column="2" Height="34" Margin="0.004,468,0.008,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_KinEnergy1" Grid.Column="2" Height="34" Margin="0,507,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_Position2" Grid.Column="2" Height="34" Margin="0,585,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_Speed2" Grid.Column="2" Height="34" Margin="0,624,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_KinEnergy2" Grid.Column="2" Height="34" Margin="0,663,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBox x:Name="TextBox_Variable_Collisions" Grid.Column="2" Height="34" Margin="0,741,0.012,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFB6B6B6" SelectionBrush="Black" CaretBrush="Black" Background="#1F000000" FontFamily="Century Gothic" FontSize="24" MaxLines="1" BorderBrush="{x:Null}" MaxWidth="197.681" IsReadOnly="True"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.02,741,174.988,0" Grid.Column="1" Text="Соударения" Grid.ColumnSpan="2"/>
+                            <TextBlock Height="34" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="#FFB6B6B6" Grid.Row="1" FontFamily="Century Gothic" Margin="0.012,702,9.993,0" Grid.ColumnSpan="3" FontWeight="Bold" Text="Общее" Grid.Column="1"/>
                         </Grid>
                     </ScrollViewer>
                     <Button Style="{StaticResource LeftTopButtonStyle}" Click="btn_Start_Click" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="60" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="60" Margin="0,30,0,0">
